@@ -1,0 +1,22 @@
+{
+  "services": {
+    "travels": {
+      "apiName": "travels",
+      "host": "http://localhost",
+      "port": 4001,
+      "url": "http://localhost:4001/"
+    },
+    "booking": {
+      "apiName": "booking",
+      "host": "http://locahost",
+      "port": 4004,
+      "url": "http://localhost:4004/"
+    },
+    "payment": {
+      "apiName": "payment",
+      "host": "http://locahost",
+      "port": 4003,
+      "url": "http://localhost:4003/"
+    }
+  }
+}
