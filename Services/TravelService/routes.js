@@ -1,8 +1,10 @@
 const express = require('express');
 
 const publicRouter = express.Router();
-const travelRoute = require('./routes/travels'); //Fichier travels.js dans dossier routes
+const getTravelsRoute = require('./routes/getTravels'); //Fichier getTravels.js dans dossier routes
+const deleteTravelRoute = require('./routes/deleteTravel'); //Fichier getTravels.js dans dossier routes
 
-publicRouter.use('/getTravels', travelRoute);
+publicRouter.use('/getTravels', getTravelsRoute);
+publicRouter.use('/deleteTravel',deleteTravelRoute);
 
 module.exports = publicRouter;
