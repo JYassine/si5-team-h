@@ -1,7 +1,7 @@
 const express = require('express');
 
 const travelRouter = express.Router();
-const travelController = require('../controllers/deleteTravel'); //Fichier getTravels.js dans le dossier controllers
+const travelController = require('../controllers/deleteTravel'); //Fichier travels.js dans le dossier controllers
 
 /**
  * Get all modules statics infos

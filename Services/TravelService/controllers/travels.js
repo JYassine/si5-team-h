@@ -44,7 +44,7 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
 }
 
 
-const getTravels = async () => {
+const travels = async () => {
     try {
         db.read()
         return db.get('travels')
@@ -57,5 +57,5 @@ const getTravels = async () => {
 
 
 module.exports = {
-    getTravels
+    getTravels: travels
 };
