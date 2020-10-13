@@ -4,9 +4,17 @@
 
 Avancement: Green Flag
 - Création de différents services:
-    - TravelService
+    - RootingService (terminé)
+    - TravelService (terminé)
+    - BookingService (en cours)
+    - PaymentService (en cours)
+- Choix des technologies:
+    - NodeJS pour les services
+    - API REST
     
 Travail pour la semaine prochaine:
+- Finalisation des services BookingService et PaymentService
+- Implémentation de PlaceService
 
 # Week 41
 
