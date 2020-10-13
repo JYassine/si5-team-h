@@ -8,7 +8,7 @@ const travelController = require('../controllers/travels'); //Fichier travels.js
  */
 travelRouter.route('/').get(async (req, res) => {
     try {
-        res.json(await travelController.getHello());
+        res.json(await travelController.getTravels());
     } catch (err) {
         next (err);
     }

@@ -1,38 +1,38 @@
-const getHello = async () => {
+const getTravels = async () => {
     try {
 
-        let voyages = [
+        let travels = [
             {
                 "id": "NP1",
-                "depart": "Nice",
-                "arrivee": "Paris",
-                "heureDepart": "9h30",
-                "heureArrivee": "15h30",
-                "prix": 29
+                "from": "Nice",
+                "to": "Paris",
+                "departureTime": "9h30",
+                "arrivingTime": "15h30",
+                "price": 29
             },
             {
                 "id": "NP2",
-                "depart": "Nice",
-                "arrivee": "Paris",
-                "heureDepart": "8h30",
-                "heureArrivee": "13h00",
-                "prix": 59
+                "from": "Nice",
+                "to": "Paris",
+                "departureTime": "8h30",
+                "arrivingTime": "13h00",
+                "price": 59
             },
             {
                 "id": "NB1",
-                "depart": "Nice",
-                "arrivee": "Brest",
-                "heureDepart": "6h00",
-                "heureArrivee": "16h00",
-                "prix": 89
+                "from": "Nice",
+                "to": "Brest",
+                "departureTime": "6h00",
+                "arrivingTime": "16h00",
+                "price": 89
             }
         ]
-        return voyages;
+        return travels;
     } catch (err) {
         console.error(err);
     }
 };
 
 module.exports = {
-    getHello
+    getTravels
 };
