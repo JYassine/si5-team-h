@@ -11,4 +11,5 @@ GET /travels => Get all travels
 
 ### Booking :
 POST /bookings => Add a new booking
+    -> body : {id : {specify an Id}, idTravel : {specify the travel id}}
 GET /bookings => Get all booking
