@@ -5,6 +5,6 @@ const travelsRoute = require('./routes/travels');
 const bookingRoute = require('./routes/booking');
 
 publicRouter.use('/travels', travelsRoute);
-publicRouter.use('/book', bookingRoute);
+publicRouter.use('/bookings', bookingRoute);
 
 module.exports = publicRouter;
