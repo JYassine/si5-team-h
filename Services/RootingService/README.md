@@ -6,5 +6,9 @@
 Service runs on port 4002  
 
 ## Exposed API
-GET /travels => Travel Service  
-POST /book => Booking Service
+### Travel :
+GET /travels => Get all travels
+
+### Booking :
+POST /bookings => Add a new booking
+GET /bookings => Get all booking
