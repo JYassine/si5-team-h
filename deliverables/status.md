@@ -4,7 +4,7 @@
 
 Avancement: Green Flag
 
--Ajout de Travis
+- Ajout de Travis
 - Création de différents services:
     - BookingService
     - PaymentService
@@ -14,7 +14,7 @@ Avancement: Green Flag
     - TravelService: Renvois les trajets comportant les options choisis par le client
     - BookingService: Créer une réservation avec prise en compte options et profil client
  
--Travail à finir pour vendredi:
+- Travail à finir pour vendredi:
     - Finir le PlaceService et PriceService
     - Ajout de test pour le TravelService
 
