@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 12
+  - 10 #minimal version of node
+  
+branches:
+  only:
+  - /.*/
+  
+install:
+  - cd Services/BookingService && npm install 
+  - cd ../RootingService && npm install
+  - cd ../TravelService && npm install
+  
+script :
+  - cd ../BookingService && npm test
