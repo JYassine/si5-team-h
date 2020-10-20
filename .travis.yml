@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "Node"
+  
+branches:
+  only:
+  - /.*/
+  
+install:
+  - cd Services/BookingService && npm install 
+  - cd ../Services/RootingService && npm install
+  - cd ../Services/TravelService && npm install
+  
+ script :
+  - cd Services/BookingService && npm test
+ 
