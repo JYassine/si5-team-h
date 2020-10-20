@@ -9,8 +9,8 @@ branches:
   
 install:
   - cd Services/BookingService && npm install 
-  - cd ../Services/RootingService && npm install
-  - cd ../Services/TravelService && npm install
+  - cd Services/RootingService && npm install
+  - cd Services/TravelService && npm install
   
 script :
   - cd Services/BookingService && npm test
