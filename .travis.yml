@@ -14,3 +14,6 @@ install:
   
 script :
   - cd ../BookingService && npm test
+  
+notifications:
+  - slack: informatiquep-kyw7477:eauGdwBvsrr6cvcg9rkgxELU
