@@ -4,6 +4,7 @@
 
 Avancement: Green Flag
 
+- Ajout d'une démo
 - Ajout de Travis
 - Création de différents services:
     - BookingService
