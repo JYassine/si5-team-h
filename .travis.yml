@@ -17,8 +17,6 @@ install:
 script :
   - cd ../BookingService && npm test
   - cd ../PaymentService && npm test
-  - cd ../demo
-  - sh ./run.sh
   
 notifications:
   - slack: informatiquep-kyw7477:eauGdwBvsrr6cvcg9rkgxELU

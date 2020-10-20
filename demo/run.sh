@@ -1,15 +1,20 @@
 #!/bin/bash
 
-cd ../RootingService
+cd ../Services/RootingService
+npm install
 node ./server.js &
 cd ../BookingService
+npm install
 node ./server.js &
 cd ../PaymentService
+npm install
 node ./server.js &
 cd ../TravelService
+npm install
 node ./server.js &
 
-cd ../demo
+cd ../../demo
+npm install
 npm test
 npx kill-port 4004
 npx kill-port 4003

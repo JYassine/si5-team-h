@@ -7,6 +7,5 @@ Service runs on port 4004
 
 **Run demo**
 
-- ./runServers.sh
-- npm test
+- ./run.sh
 
