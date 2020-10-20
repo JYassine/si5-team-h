@@ -19,6 +19,7 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "departureTime": "9h30",
                 "arrivingTime": "15h30",
                 "price": 29,
+                "options":[],
                 "taken":false
             },
             {
@@ -28,6 +29,7 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "departureTime": "8h30",
                 "arrivingTime": "13h00",
                 "price": 59,
+                "options":["bicycle","plug"],
                 "taken":false
             },
             {
@@ -37,6 +39,7 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "departureTime": "6h00",
                 "arrivingTime": "16h00",
                 "price": 89,
+                "options":["bicycle","plug"],
                 "taken":false
             }
         )
@@ -44,11 +47,19 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
 }
 
 
-const travels = async () => {
+const travels = async (request) => {
+    const options = request.options
     try {
         db.read()
         return db.get('travels')
             .filter({taken:false})
+            .filter(function (travel) {
+                let allOptionsGood = true
+                for (const option in options) {
+                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                }
+                return allOptionsGood
+            })
             .value()
     } catch (err) {
         console.error(err);
