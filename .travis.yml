@@ -11,9 +11,11 @@ install:
   - cd Services/BookingService && npm install 
   - cd ../RootingService && npm install
   - cd ../TravelService && npm install
+  - cd ../PaymentService && npm install
   
 script :
   - cd ../BookingService && npm test
+  - cd ../PaymentService && npm test
   
 notifications:
   - slack: informatiquep-kyw7477:eauGdwBvsrr6cvcg9rkgxELU
