@@ -7,7 +7,8 @@
       "departureTime": "9h30",
       "arrivingTime": "15h30",
       "price": 29,
-      "taken": true
+      "options": [],
+      "taken": false
     },
     {
       "id": "NP2",
@@ -16,6 +17,10 @@
       "departureTime": "8h30",
       "arrivingTime": "13h00",
       "price": 59,
+      "options": [
+        "bicycle",
+        "plug"
+      ],
       "taken": false
     },
     {
@@ -25,6 +30,10 @@
       "departureTime": "6h00",
       "arrivingTime": "16h00",
       "price": 89,
+      "options": [
+        "bicycle",
+        "plug"
+      ],
       "taken": false
     }
   ]
