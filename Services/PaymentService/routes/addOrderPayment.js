@@ -18,14 +18,17 @@ paymentRooter.post('/',
       }
 
       bookingApi.getAllBookings().then((response) => {
-         if (checkBookingIdExist(response.data, req.body.idBooking)) {
-            return res.status(200).json(paymentController.addOrderPayment(req.body));
-         }else{
+         if (!checkBookingIdExist(response.data, req.body.idBooking)) {
             throw new exception.BookingIdException("The booking id specified don't exist")
          }
-      }).catch((error) => {
-         next(error)
-      });
+         return paymentController.addOrderPayment(req.body)
+
+      }).then((response) => {
+         return res.status(201).json(response);
+      }).
+         catch((error) => {
+            next(error)
+         });
 
 
    });

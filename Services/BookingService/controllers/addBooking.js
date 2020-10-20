@@ -11,7 +11,6 @@ const addBooking = (body) => {
     if (idAlreadyExist(body.id)) {
         throw Error("this id already exist in database");
     }
-    console.log(db.get("bookings").value())
     db.get("bookings").push(body).write();
 };
 
