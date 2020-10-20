@@ -12,7 +12,6 @@ install:
   - cd ../RootingService && npm install
   - cd ../TravelService && npm install
   - cd ../PaymentService && npm install
-  - cd ../demo && npm install
   
 script :
   - cd ../BookingService && npm test
