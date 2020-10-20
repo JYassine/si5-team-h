@@ -13,4 +13,4 @@ install:
   - cd ../TravelService && npm install
   
 script :
-  - cd Services/BookingService && npm test
+  - cd ../BookingService && npm test
