@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-  - "Node"
+  - 12
+  - 10 #minimal version of node
   
 branches:
   only:
