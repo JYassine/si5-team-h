@@ -1,9 +1,8 @@
 # si5-team-h
 
-Pour lancer le serveur:
-- npm install
-- node server.js
+Pour lancer la demo :
 
+cd demo && ./run.sh
 
 Ports utilisés: 
 

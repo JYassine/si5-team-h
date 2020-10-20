@@ -9,7 +9,7 @@ const db = low(adapter)
 
 const deleteTravel = async (body) => {
     db.get('travels')
-        .find({id :body.id})
+        .find({id :body.idTravel})
         .assign({taken:true})
         .write()
 

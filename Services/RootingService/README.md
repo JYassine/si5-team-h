@@ -6,5 +6,28 @@
 Service runs on port 4002  
 
 ## Exposed API
-GET /travels => Travel Service  
-POST /book => Booking Service
+### Travel :
+GET /travels => Get all travels
+
+### Booking :
+GET /bookings => Get all booking  
+POST /bookings => Add a new booking  
+     
+```json
+{   
+    "id" : "{String}",
+    "idTravel" : "{String}"       
+}
+```
+
+### Payment :
+POST /payment
+
+```json
+{   
+    "payment_method" : "{String}",
+    "idBooking" : "{String}",
+    "currency" : "{String}",
+    "total" : "{String}"      
+}
+```
