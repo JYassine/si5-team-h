@@ -7,7 +7,7 @@
       "departureTime": "9h30",
       "arrivingTime": "15h30",
       "price": 29,
-      "taken": true
+      "taken": false
     },
     {
       "id": "NP2",
