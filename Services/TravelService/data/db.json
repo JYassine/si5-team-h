@@ -1,0 +1,31 @@
+{
+  "travels": [
+    {
+      "id": "NP1",
+      "from": "Nice",
+      "to": "Paris",
+      "departureTime": "9h30",
+      "arrivingTime": "15h30",
+      "price": 29,
+      "taken": true
+    },
+    {
+      "id": "NP2",
+      "from": "Nice",
+      "to": "Paris",
+      "departureTime": "8h30",
+      "arrivingTime": "13h00",
+      "price": 59,
+      "taken": false
+    },
+    {
+      "id": "NB1",
+      "from": "Nice",
+      "to": "Brest",
+      "departureTime": "6h00",
+      "arrivingTime": "16h00",
+      "price": 89,
+      "taken": false
+    }
+  ]
+}

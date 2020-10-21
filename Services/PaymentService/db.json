@@ -1,0 +1,12 @@
+{
+  "orderPayments": [
+    {
+      "id": "30d29765vkgjdxzde",
+      "idBooking": "1",
+      "currency": "USD",
+      "total": "29",
+      "payment_method": "Paypal",
+      "linkPayment": "http://localhost:4003/payment/execute/Paypal-30d29765vkgjdxzde"
+    }
+  ]
+}
