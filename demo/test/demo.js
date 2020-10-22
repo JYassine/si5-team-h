@@ -7,7 +7,15 @@ const MAGENTA_COLOR = "\x1b[35m"
 const WHITE_COLOR = "\x1b[37m"
 const idBooking = "1";
 
-const rootingService = "http://localhost:4002"
+const dotenv = require('dotenv');
+
+const dotenvConfig = dotenv.config()
+if (dotenvConfig.error) {
+  throw dotenvConfig.error
+}
+
+
+const rootingService = `${process.env.ROOTING_ADDR}`
 console.log("**************** DEMO *****************")
 console.log(YELLOW_COLOR ,"When", WHITE_COLOR, "the agent get a travel from Nice to Paris and the departure time is at 9:30 am")
 

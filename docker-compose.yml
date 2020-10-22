@@ -1,0 +1,36 @@
+version: '3.4'
+services:
+  booking:
+    container_name: booking
+    build: ./Services/BookingService
+    ports:
+      - "4004:4004"
+    networks:
+      - blueorigin
+      
+  payment:
+    container_name: payment
+    build: ./Services/PaymentService
+    ports:
+      - "4003:4003"
+    networks:
+      - blueorigin
+
+  rooting:
+    container_name: rooting
+    build: ./Services/RootingService
+    ports:
+      - "4002:4002"
+    networks:
+      - blueorigin
+
+  travel:
+    container_name: travel
+    build: ./Services/TravelService
+    ports:
+      - "4001:4001"
+    networks:
+      - blueorigin
+
+networks:
+  blueorigin:
