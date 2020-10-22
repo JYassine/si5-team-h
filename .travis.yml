@@ -20,6 +20,7 @@ script :
   - cd ../TravelService && npm test
   - cd ../PriceService && npm test
   - cd ../TravelService && npm test
+  - cd ../PriceService && npm test
   
 notifications:
   - slack: informatiquep-kyw7477:eauGdwBvsrr6cvcg9rkgxELU
