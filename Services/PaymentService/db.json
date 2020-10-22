@@ -7,6 +7,30 @@
       "total": "29",
       "payment_method": "Paypal",
       "linkPayment": "http://localhost:4003/payment/execute/Paypal-30d29765vkgjdxzde"
+    },
+    {
+      "id": "30d29nq8kgksvy18",
+      "idBooking": "1",
+      "currency": "USD",
+      "total": "29",
+      "payment_method": "Paypal",
+      "linkPayment": "undefined/payment/execute/Paypal-30d29nq8kgksvy18"
+    },
+    {
+      "id": "30d29ofokgkt5qta",
+      "idBooking": "1",
+      "currency": "USD",
+      "total": "29",
+      "payment_method": "Paypal",
+      "linkPayment": "undefined/payment/execute/Paypal-30d29ofokgkt5qta"
+    },
+    {
+      "id": "30d29101rkgktz12s",
+      "idBooking": "1",
+      "currency": "USD",
+      "total": "29",
+      "payment_method": "Paypal",
+      "linkPayment": "undefined/payment/execute/Paypal-30d29101rkgktz12s"
     }
   ]
 }

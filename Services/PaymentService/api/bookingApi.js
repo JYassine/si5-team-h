@@ -1,8 +1,8 @@
 const axios = require('axios').default;
 
 const getAllBookings = async () => {
-
-  let promiseBooking = await axios.get('http://localhost:4004/bookings/')
+  console.log("coucou ! ", `${process.env.BOOKING_ADDR}/bookings`);
+  let promiseBooking = await axios.get(`${process.env.BOOKING_ADDR}/bookings`)
     .catch(error => { throw new Error("Error on getting bookings : "+ error) });
 
   return promiseBooking;
