@@ -25,3 +25,5 @@ echo "All services launch successfully"
 cd ../demo
 npm install
 npm test
+
+pm2 kill
