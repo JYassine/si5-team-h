@@ -41,21 +41,21 @@ describe('demo', () => {
                         console.log(MAGENTA_COLOR, "Asynchron request to check if travel ID exist -> BookingService > TravelService")
                         console.log(GREEN_COLOR, "RESPONSE :", GREEN_COLOR, response.status)
                         return travel
+                    }).then( (travel) => {
+                        axios.post(rootingService + "/payment", {
+                            payment_method: "Paypal",
+                            idBooking: idBooking,
+                            currency: "USD",
+                            total: (travel.price).toString()
+                        }).then(function (response) {
+        
+                            expect(response.status).to.equal(201)
+                            console.log(YELLOW_COLOR, "Rooting service > PaymentService : Create an order of payment ")
+                            console.log(MAGENTA_COLOR, "Asynchron request to check if booking ID exist -> PaymentService > BookingService")
+                            console.log(GREEN_COLOR, "RESPONSE :", GREEN_COLOR, JSON.stringify(response.data))
+                        })
                     })
                 return travel
-            }).then( (travel) => {
-                axios.post(rootingService + "/payment", {
-                    payment_method: "Paypal",
-                    idBooking: idBooking,
-                    currency: "USD",
-                    total: (travel.price).toString()
-                }).then(function (response) {
-
-                    expect(response.status).to.equal(201)
-                    console.log(YELLOW_COLOR, "Rooting service > PaymentService : Create an order of payment ")
-                    console.log(MAGENTA_COLOR, "Asynchron request to check if booking ID exist -> PaymentService > BookingService")
-                    console.log(GREEN_COLOR, "RESPONSE :", GREEN_COLOR, JSON.stringify(response.data))
-                })
             });
     });
 });

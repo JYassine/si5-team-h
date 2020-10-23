@@ -3,7 +3,7 @@ const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
 const db = low(adapter)
 const uniqid = require('uniqid');
-const pathLinkPayment = "http://localhost:4003/payment/execute/";
+const pathLinkPayment = `${process.env.PAYMENT_ADDR}/payment/execute/`;
 
 db.defaults({ orderPayments: [] })
     .write()

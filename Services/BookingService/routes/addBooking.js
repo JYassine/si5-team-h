@@ -1,7 +1,7 @@
 const express = require('express');
 const bookingRooter = express.Router();
 const bookingController = require('../controllers/addBooking');
-const travelAPI = require('../api/travelAPI');
+const travelAPI = require('../api/travelApi');
 
 const { body, validationResult } = require('express-validator');
 
