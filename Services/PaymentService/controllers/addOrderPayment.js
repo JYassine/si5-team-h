@@ -3,6 +3,12 @@ const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
 const db = low(adapter)
 const uniqid = require('uniqid');
+const dotenv = require('dotenv');
+
+const dotenvConfig = dotenv.config()
+if (dotenvConfig.error) {
+  throw dotenvConfig.error
+}
 const pathLinkPayment = `${process.env.PAYMENT_ADDR}/payment/execute/`;
 
 db.defaults({ orderPayments: [] })

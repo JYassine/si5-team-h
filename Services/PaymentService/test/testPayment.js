@@ -5,7 +5,13 @@ const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
 const paymentController = require('../controllers/addOrderPayment')
 const nock = require('nock')
-const db = low(adapter)
+const dotenv = require('dotenv');
+
+const dotenvConfig = dotenv.config()
+if (dotenvConfig.error) {
+  throw dotenvConfig.error
+}
+
 
 const requestAddOrderPayment = {
     payment_method: "Paypal",

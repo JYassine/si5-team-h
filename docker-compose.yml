@@ -6,7 +6,7 @@ services:
     ports:
       - "4004:4004"
     networks:
-      - blueorigin
+      - travelAPI
       
   payment:
     container_name: payment
@@ -14,7 +14,7 @@ services:
     ports:
       - "4003:4003"
     networks:
-      - blueorigin
+      - travelAPI
 
   rooting:
     container_name: rooting
@@ -22,7 +22,7 @@ services:
     ports:
       - "4002:4002"
     networks:
-      - blueorigin
+      - travelAPI
 
   travel:
     container_name: travel
@@ -30,7 +30,8 @@ services:
     ports:
       - "4001:4001"
     networks:
-      - blueorigin
+      - travelAPI
+
 
 networks:
-  blueorigin:
+  travelAPI:
