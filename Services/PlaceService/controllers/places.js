@@ -40,7 +40,6 @@ if (db.has('places').value()) {
 }
 
 async function getAvailablePlaces(trainId) {
-    // TODO
     try {
         db.read();
         return db.get('places')
