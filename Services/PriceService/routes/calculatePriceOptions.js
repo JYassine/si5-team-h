@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator');
 
 
 priceRooter.post('/',
-   [body('idBooking').isString(),
+   [body('idTravel').isString(),
    body('options').isArray()]
    , (req, res, next) => {
       const errors = validationResult(req);
@@ -13,10 +13,9 @@ priceRooter.post('/',
          return res.status(400).json({ errors: errors.array() });
       }
 
-      return res.status(200).json(calculatePriceController.calculatePriceOptions(req.body))
-
-
-
+      calculatePriceController.getTotalPrice(req.body).then(response=>{
+         res.status(200).json(response);
+      });
 
    });
 

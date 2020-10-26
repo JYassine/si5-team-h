@@ -17,8 +17,9 @@ Request Body
 
 ```json
 {
-    "idBooking" : "{String}",
+    "idTravel" : "{String}",
     "options" : "{Array}",
+
 }
 ```
 Response Body
@@ -26,8 +27,8 @@ Response Body
 ```json
 {
     "id": "{String}",
-    "idBooking": "{String}",
-    "priceOptions": "{Integer}"
+    "idTravel": "{String}",
+    "totalPrice": "{Integer}"
 }
 ```
 

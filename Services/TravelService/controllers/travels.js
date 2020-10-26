@@ -88,7 +88,37 @@ async function travels(request) {
     }
 }
 
+async function travels(request) {
+    const options = request.options
+    try {
+        db.read()
+        return db.get('travels')
+            .filter({taken: false})
+            .filter(function (travel) {
+                let allOptionsGood = true
+                for (const option in options) {
+                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                }
+                return allOptionsGood
+            })
+            .value()
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+async function travelById(idTravel) {
+    try {
+        db.read()
+        return db.get('travels')
+            .find(element => element.id == idTravel)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 
 module.exports = {
-    getTravels: travels
+    getTravels: travels,
+    getTravelById : travelById
 };

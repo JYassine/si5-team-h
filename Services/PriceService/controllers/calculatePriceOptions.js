@@ -1,6 +1,7 @@
 const low = require('lowdb')
 const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
+const travelApi = require("../api/travelApi")
 const db = low(adapter)
 const uniqid = require('uniqid');
 
@@ -13,24 +14,32 @@ mapOptions.set("bicycle", 10)
 mapOptions.set("plug", 2)
 
 
-function calculatePriceOptions(body) {
+const getTotalPrice = async (body) =>{
+    const priceTravel = await travelApi.getTravelPrice(body.idTravel);
+    const bookingTotalPrice = calculateTotalPrice(body,priceTravel);
+    db.get("priceBookingOptions").push(bookingTotalPrice).write();
+    return bookingTotalPrice;
+    
+};
+
+const calculateTotalPrice = (body, priceTravel)=>{
     let sumOptions = 0;
     body.options.forEach(option => {
         sumOptions += mapOptions.get(option)
     });
-    let bookingOptionsPrice = {
-        id: uniqid(body.idBooking + "-"),
-        idBooking: body.idBooking,
-        priceOptions: sumOptions
-
+    let bookingTotalPrice = {
+        id: uniqid(body.idTravel + "-"),
+        idTravel: body.idTravel,
+        totalPrice: sumOptions+priceTravel
     }
-    db.get("priceBookingOptions").push(bookingOptionsPrice).write();
-    return bookingOptionsPrice;
 
-};
+    return bookingTotalPrice
+
+}
 
 
 
 module.exports = {
-    calculatePriceOptions
+    getTotalPrice,
+    calculateTotalPrice
 };
