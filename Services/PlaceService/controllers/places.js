@@ -44,7 +44,7 @@ async function getAvailablePlaces(trainId) {
         db.read();
         return db.get('places')
             .filter({id: trainId})
-            .value();
+            .value()[0];
     } catch(err) {
         console.err(err);
     }

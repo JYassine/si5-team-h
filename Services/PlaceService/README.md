@@ -1,0 +1,42 @@
+## Run
+**npm start**  
+**npm run dev** to run with nodemon  
+Service runs on port 4006
+
+**Run test**
+
+- npm test
+
+## Exposed API
+POST /place => returns number of seats available in a train
+
+Request Body
+----
+
+```json
+{
+    "id" : "{String}"   
+}
+```
+
+Response Body
+----
+```json
+{   
+    "id": "{String}",
+    "firstClass": "{Integer}",
+    "secondClass": "{Integer}"       
+}
+```
+
+POST /bookPlace => books seat(s) and updates number of available seats left in a train
+
+Request Body
+----
+```json
+{   
+    "id": "{String}",
+    "firstClass": "{Integer}",
+    "secondClass": "{Integer}"       
+}
+```

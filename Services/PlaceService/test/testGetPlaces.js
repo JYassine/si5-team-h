@@ -41,6 +41,8 @@ describe("Get available seats", () => {
         }
     };
 
+    beforeEach(() => placeController.resetDatabase());
+
     it("should return the available seats with train ID NP1", () => {
         return placeController.getAvailablePlaces(id1)
             .then(() => {
