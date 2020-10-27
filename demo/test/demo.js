@@ -19,14 +19,12 @@ console.log(YELLOW_COLOR ,"And", WHITE_COLOR," the agent can obtain a link to pa
 
 describe('demo', () => {
     it('demo', () => {
-        axios.get(rootingService + "/travels")
+        axios.get(rootingService + "/travels", {params :{"options":[], "from":"Nice", "to":"Paris"}})
             .then( (response) => {
-                const result = response.data.filter(travel =>
-                    travel.from === 'Nice' && travel.departureTime === "9h30" && travel.to === 'Paris');
-                expect(result.length).to.equal(1)
+                const result = response.data
+                expect(result.length).to.equal(2)
                 expect(result[0].from).to.equal("Nice")
                 expect(result[0].to).to.equal("Paris")
-                expect(result[0].departureTime).to.equal("9h30")
 
                 console.log(YELLOW_COLOR, "Rooting service > Travel Service : Get the travel")
                 console.log(GREEN_COLOR, "RESPONSE :", GREEN_COLOR, JSON.stringify(result[0]))

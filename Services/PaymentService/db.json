@@ -1,1 +1,12 @@
-
+{
+  "orderPayments": [
+    {
+      "id": "30d29hdbkgs4rnk3",
+      "idBooking": "1",
+      "currency": "USD",
+      "total": "29",
+      "payment_method": "Paypal",
+      "linkPayment": "undefined/payment/execute/Paypal-30d29hdbkgs4rnk3"
+    }
+  ]
+}
