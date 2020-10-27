@@ -48,9 +48,40 @@ async function getAvailablePlaces(trainId) {
     } catch(err) {
         console.err(err);
     }
-
 }
 
-module.exports = {getAvailablePlaces};
+function resetDatabase() {
+    db.get('places').remove().write();
+    db.get('places').push(
+        {
+            "id": "NP1",
+            "firstClass": 14,
+            "secondClass": 25
+        },
+        {
+            "id": "NP2",
+            "firstClass": 26,
+            "secondClass": 71
+        },
+        {
+            "id": "NB1",
+            "firstClass": 8,
+            "secondClass": 21
+        },
+        {
+            "id": "NB2",
+            "firstClass": 32,
+            "secondClass": 59
+        },
+        {
+            "id": "NB3",
+            "firstClass": 22,
+            "secondClass": 68
+        }
+    )
+        .write();
+}
+
+module.exports = {getAvailablePlaces, resetDatabase};
 
 
