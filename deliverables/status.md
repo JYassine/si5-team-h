@@ -18,6 +18,10 @@ Avancement: Green Flag
 - Travail à finir pour vendredi:
     - Finir le PlaceService et PriceService
     - Ajout de test pour le TravelService
+    
+- Travail pour la semaine prochaine:
+    - Amélioration de TravelService et BookingService pour la réservation d'un groupe de client
+    
 
 
 # Week 42

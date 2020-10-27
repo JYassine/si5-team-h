@@ -59,6 +59,30 @@
         "plug"
       ],
       "taken": false
+    },
+    {
+      "id": "NB2",
+      "from": "Nice",
+      "to": "Brest",
+      "departureTime": "6h00",
+      "arrivingTime": "16h00",
+      "price": 89,
+      "options": [
+        "bicycle"
+      ],
+      "taken": false
+    },
+    {
+      "id": "NB3",
+      "from": "Nice",
+      "to": "Brest",
+      "departureTime": "6h00",
+      "arrivingTime": "16h00",
+      "price": 89,
+      "options": [
+        "plug"
+      ],
+      "taken": false
     }
   ]
 }

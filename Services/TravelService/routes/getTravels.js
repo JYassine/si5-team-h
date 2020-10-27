@@ -14,5 +14,13 @@ travelRouter.route('/').get(async (req, res) => {
     }
 });
 
+travelRouter.route('/:id').get( async (req,res) => {
+    try {
+        res.json(await travelController.getTravelById(req.params.id));
+    } catch (err) {
+        next (err);
+    }
+});
+
 
 module.exports = travelRouter;
