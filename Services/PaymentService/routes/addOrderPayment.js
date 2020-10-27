@@ -33,8 +33,24 @@ paymentRooter.post('/',
 
    });
 
+paymentRooter.post('/execute/:id', async (req, res, next) => {
+
+   try {
+
+      const result = await paymentController.validateOrderPayment(req.params.id)
+      res.status(200).json(result);
+   }catch(err){
+      res.status(404).json(err.name +" : "+ err.message);
+   }
+    
+
+
+});
+
+
 const checkBookingIdExist = (bookings, idBooking) => {
    return bookings.filter(booking => booking.id === idBooking).length > 0
 }
+
 
 module.exports = paymentRooter;
