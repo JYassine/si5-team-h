@@ -1,4 +1,19 @@
 # Status
+# Week 44
+
+Avancement: Green Flag
+- PlaceService 
+- PriceService
+- Test de TravelService
+- Amélioration de TravelService et BookingService pour la prise en charge des options
+
+
+Travail à faire pour la semaine prochaine:
+- Finalisation de la réservation d'un groupe de clients
+- Rajouter AccountService pour l'authentification de l'agence de voyage
+- Préparation de la soutenance de présentation du POC
+- Update de RoutingService pour tout les différents services
+
 
 # Week 43
 
