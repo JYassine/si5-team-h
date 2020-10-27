@@ -3,11 +3,11 @@ const axios = require('axios').default;
 const travelController = require('../controllers/travels')
 const nock = require('nock')
 
-describe("Get all travels",function (){
-    const requestTravelsNoOptions = {"options":[]}
-    const requestPlug = {"options":["plug"]}
-    const requestBicycle = {"options":["bicycle"]}
-    const requestFullOptions = {"options":["bicycle","plug"]}
+describe("Get travels NP",function (){
+    const requestTravelsNoOptions = {"options":[], "from":"Nice", "to":"Paris"}
+    const requestPlug = {"options":["plug"], "from":"Nice", "to":"Paris"}
+    const requestBicycle = {"options":["bicycle"], "from":"Nice", "to":"Paris"}
+    const requestFullOptions = {"options":["bicycle","plug"], "from":"Nice", "to":"Paris"}
     const expectedResponseTravelsNoOptions = [
         {
             "id": "NP1",
@@ -31,43 +31,6 @@ describe("Get all travels",function (){
                 "plug"
             ],
             "taken": false
-        },
-        {
-            "id": "NB1",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
-            "options": [
-                "bicycle",
-                "plug"
-            ],
-            "taken": false
-        },
-        {
-            "id": "NB2",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
-            "options": [
-                "bicycle"
-            ],
-            "taken": false
-        },
-        {
-            "id": "NB3",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
-            "options": [
-                "plug"
-            ],
-            "taken": false
         }
     ]
     const expectedResponseTravelsWithPlug = [
@@ -80,31 +43,6 @@ describe("Get all travels",function (){
             "price": 59,
             "options": [
                 "bicycle",
-                "plug"
-            ],
-            "taken": false
-        },
-        {
-            "id": "NB1",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
-            "options": [
-                "bicycle",
-                "plug"
-            ],
-            "taken": false
-        },
-        {
-            "id": "NB3",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
-            "options": [
                 "plug"
             ],
             "taken": false
@@ -123,31 +61,6 @@ describe("Get all travels",function (){
                 "plug"
             ],
             "taken": false
-        },
-        {
-            "id": "NB1",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
-            "options": [
-                "bicycle",
-                "plug"
-            ],
-            "taken": false
-        },
-        {
-            "id": "NB2",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
-            "options": [
-                "bicycle"
-            ],
-            "taken": false
         }
     ]
     const expectedResponseTravelsFullOptions = [
@@ -158,19 +71,6 @@ describe("Get all travels",function (){
             "departureTime": "8h30",
             "arrivingTime": "13h00",
             "price": 59,
-            "options": [
-                "bicycle",
-                "plug"
-            ],
-            "taken": false
-        },
-        {
-            "id": "NB1",
-            "from": "Nice",
-            "to": "Brest",
-            "departureTime": "6h00",
-            "arrivingTime": "16h00",
-            "price": 89,
             "options": [
                 "bicycle",
                 "plug"

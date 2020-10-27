@@ -8,7 +8,7 @@
       "arrivingTime": "15h30",
       "price": 29,
       "options": [],
-      "taken": true
+      "taken": false
     },
     {
       "id": "NP2",
@@ -17,6 +17,19 @@
       "departureTime": "8h30",
       "arrivingTime": "13h00",
       "price": 59,
+      "options": [
+        "bicycle",
+        "plug"
+      ],
+      "taken": false
+    },
+    {
+      "id": "PB1",
+      "from": "Paris",
+      "to": "Brest",
+      "departureTime": "14h00",
+      "arrivingTime": "17h00",
+      "price": 19,
       "options": [
         "bicycle",
         "plug"

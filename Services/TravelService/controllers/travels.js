@@ -33,6 +33,16 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "taken":false
             },
             {
+                "id": "PB1",
+                "from": "Paris",
+                "to": "Brest",
+                "departureTime": "14h00",
+                "arrivingTime": "17h00",
+                "price": 19,
+                "options":["bicycle","plug"],
+                "taken":false
+            },
+            {
                 "id": "NB1",
                 "from": "Nice",
                 "to": "Brest",
@@ -70,6 +80,8 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
 
 
 async function travels(request) {
+    const from = request.from
+    const to = request.to
     const options = request.options
     try {
         db.read()
@@ -82,6 +94,8 @@ async function travels(request) {
                 }
                 return allOptionsGood
             })
+            .filter({from: from})
+            .filter({to: to})
             .value()
     } catch (err) {
         console.error(err)
