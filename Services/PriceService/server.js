@@ -5,7 +5,7 @@ const cors = require('cors');
 const routes = require('./routes'); //Importe le fichier routes.js
 const dotenv = require('dotenv');
 
-const PORT = 4001;
+const PORT = 4005;
 
 const dotenvConfig = dotenv.config()
 if (dotenvConfig.error) {
@@ -16,6 +16,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/', routes);
 
-app.listen(PORT, function() {
-    console.log("Server is running on Port: " + PORT);
+app.listen(PORT, function () {
+  console.log("Server is running on Port: " + PORT);
 });

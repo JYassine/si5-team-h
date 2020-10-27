@@ -1,22 +1,65 @@
 #!/bin/bash
 
-cd ../Services/RootingService
-npm install
-node ./server.js &
-cd ../BookingService
-npm install
-node ./server.js &
-cd ../PaymentService
-npm install
-node ./server.js &
-cd ../TravelService
-npm install
-node ./server.js &
+kill=0
+db=0
 
-cd ../../demo
+for param in "$@"
+do
+    #Si on souhaite kill les serveur a la fin
+    if [ $param = "-k" ]
+    then
+        kill=1
+    fi
+
+    #Si on souhaite vider les db a la fin
+    if [ $param = "-db" ]
+    then
+        db=1
+    fi
+done
+
+echo "Installation of pm2"
+npm install -g pm2
+services_list=$(ls ../Services/)
+mapfile -t services_array <<< "$services_list"
+
+cd ../Services
+
+for i in "${services_array[@]}"
+do
+    echo "-----------------------"
+    echo $i
+    cd $i
+    rm .env
+    cp ../../.env.dev ./.env
+    npm install
+    pm2 start server.js -n $i
+    cd ../
+done
+
+pm2 list
+echo "All services launch successfully"
+
+cd ../demo
 npm install
 npm test
-npx kill-port 4004
-npx kill-port 4003
-npx kill-port 4002
-npx kill-port 4001
+
+if [ $kill = 1 ]
+then
+    echo "Kill des serveurs"
+    pm2 kill
+fi
+
+if [ $db = 0 ]
+then
+    echo "Vidage des bases de donnees"
+    
+    cd ../Services
+
+    for i in "${services_array[@]}"
+    do
+        cd $i
+        echo "" > db.json
+        cd ../
+    done
+fi

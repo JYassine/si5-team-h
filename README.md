@@ -1,10 +1,21 @@
 # si5-team-h
 
-Pour lancer la demo :
+## Pour lancer la demo :
 
-cd demo && ./run.sh
+cd demo && sudo sh run.sh
 
-Ports utilisés: 
+option disponibles :
+
+-k : kill les serveurs à la fin de l execution
+-db : ne vide pas les bases de donnees apres l execution (dont les tests)
+
+## Pour debugger
+
+- Ne pas kill les serveurs en n'utilisant pas l'option -k
+- Lancer la commande `sudo pm2 logs`
+- Kill les serveurs avec la commande `sudo pm2 kill`
+
+## Ports utilisés: 
 
 - Travel Service: 4001
 - Routing Service: 4002

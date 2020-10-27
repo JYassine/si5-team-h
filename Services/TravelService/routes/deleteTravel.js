@@ -7,11 +7,21 @@ const travelController = require('../controllers/deleteTravel'); //Fichier trave
  * Get all modules statics infos
  */
 
-travelRouter.route('/').post(async (req, res) => {
+travelRouter.route('/').post(async (req, res,next) => {
     try {
-        res.json(await travelController.deleteTravel(req.body));
+        const status = await travelController.deleteTravel(req.body);
+        switch (status) {
+            case 200:
+                res.status(200).json("The travel " + req.body.idTravel + " is no longer available.")
+                break
+            case 204:
+                res.status(204).json("The travel " + req.body.idTravel + " doesn't exist.")
+                break
+        }
+
     } catch (err) {
-        next (err);
+        res.status(204)
+        next(err)
     }
 });
 

@@ -19,6 +19,7 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "departureTime": "9h30",
                 "arrivingTime": "15h30",
                 "price": 29,
+                "options":[],
                 "taken":false
             },
             {
@@ -28,6 +29,7 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "departureTime": "8h30",
                 "arrivingTime": "13h00",
                 "price": 59,
+                "options":["bicycle","plug"],
                 "taken":false
             },
             {
@@ -37,6 +39,27 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "departureTime": "6h00",
                 "arrivingTime": "16h00",
                 "price": 89,
+                "options":["bicycle","plug"],
+                "taken":false
+            },
+            {
+                "id": "NB2",
+                "from": "Nice",
+                "to": "Brest",
+                "departureTime": "6h00",
+                "arrivingTime": "16h00",
+                "price": 89,
+                "options":["bicycle"],
+                "taken":false
+            },
+            {
+                "id": "NB3",
+                "from": "Nice",
+                "to": "Brest",
+                "departureTime": "6h00",
+                "arrivingTime": "16h00",
+                "price": 89,
+                "options":["plug"],
                 "taken":false
             }
         )
@@ -44,18 +67,58 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
 }
 
 
-const travels = async () => {
+
+
+async function travels(request) {
+    const options = request.options
     try {
         db.read()
         return db.get('travels')
-            .filter({taken:false})
+            .filter({taken: false})
+            .filter(function (travel) {
+                let allOptionsGood = true
+                for (const option in options) {
+                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                }
+                return allOptionsGood
+            })
             .value()
     } catch (err) {
-        console.error(err);
+        console.error(err)
     }
-};
+}
+
+async function travels(request) {
+    const options = request.options
+    try {
+        db.read()
+        return db.get('travels')
+            .filter({taken: false})
+            .filter(function (travel) {
+                let allOptionsGood = true
+                for (const option in options) {
+                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                }
+                return allOptionsGood
+            })
+            .value()
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+async function travelById(idTravel) {
+    try {
+        db.read()
+        return db.get('travels')
+            .find(element => element.id == idTravel)
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 
 module.exports = {
-    getTravels: travels
+    getTravels: travels,
+    getTravelById : travelById
 };

@@ -2,10 +2,15 @@ const low = require('lowdb')
 const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
 const db = low(adapter)
+require('dotenv').config()
 const uniqid = require('uniqid');
-const pathLinkPayment = "http://localhost:4003/payment/execute/";
+const pathLinkPayment = `${process.env.PAYMENT_ADDR}`+'/payment/execute/';
+const exceptionOrder = require("../exception/OrderPaymentNotFoundException")
 
 db.defaults({ orderPayments: [] })
+    .write()
+
+db.defaults({ paymentDone: [] })
     .write()
 
 async function addOrderPayment(body) {
@@ -33,7 +38,33 @@ const constructOrderPayment = (body) => {
     return order;
 }
 
+const validateOrderPayment = async (linkPaymentId) =>{
+    const idPayment = linkPaymentId.split('-')[1];
+    const orderPayment = await db.get('orderPayments').find({ id: idPayment }).value()
+    if(orderPayment == undefined){
+        throw new exceptionOrder.OrderPaymentNotFoundException("The order payment don't exist")
+    }
+    var date = new Date(new Date().getTime());
+    let statusOrder = {
+        id : idPayment,
+        status : "SUCCESSFULL",
+        transaction_time : date.toString(),
+        amount : {
+            total: orderPayment.total,
+            currency: orderPayment.currency,
+            payment_method : orderPayment.payment_method
+        } 
+
+    };
+    
+    db.get('paymentDone').push(statusOrder).write();
+    db.get('orderPayments').remove({ id: idPayment }).write();
+    return statusOrder;
+
+}
+
 
 module.exports = {
-    addOrderPayment
+    addOrderPayment,
+    validateOrderPayment
 };
