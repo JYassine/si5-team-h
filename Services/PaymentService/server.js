@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const routes = require('./routes'); //Importe le fichier routes.js
 const dotenv = require('dotenv');
+const routes = require('./routes'); //Importe le fichier routes.js
 
 const PORT = 4003;
 
