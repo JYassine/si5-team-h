@@ -37,7 +37,6 @@ do
     cd ../
 done
 
-pm2 list
 echo "All services launch successfully"
 
 cd ../demo
