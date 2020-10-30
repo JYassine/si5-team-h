@@ -16,30 +16,65 @@ describe("Get available seats", () => {
     {
         id1: {
             "id": "NP1",
-                "firstClass": 14,
-                "secondClass": 25
-        },
+            "firstClass": {
+                "noOption": 14,
+                "bicycle": 0,
+                "plug": 0
+            },
+            "secondClass": {
+                "noOption": 25,
+                "bicycle": 0,
+                "plug": 0
+        }},
         id2: {
             "id": "NP2",
-                "firstClass": 26,
-                "secondClass": 71
-        },
+            "firstClass": {
+                "noOption": 14,
+                "bicycle": 5,
+                "plug": 10,
+            },
+            "secondClass": {
+                "noOption": 19,
+                "bicycle": 20,
+                "plug": 21,
+        }},
         id3: {
             "id": "NB1",
-            "firstClass": 8,
-            "secondClass": 21
-        },
+            "firstClass": {
+                "noOption": 11,
+                "bicycle": 5,
+                "plug": 8
+            },
+            "secondClass": {
+                "noOption": 25,
+                "bicycle": 19,
+                "plug": 9
+        }},
         id4: {
             "id": "NB2",
-            "firstClass": 32,
-            "secondClass": 59
-        },
+            "firstClass": {
+                "noOption": 19,
+                "bicycle": 10,
+                "plug": 0
+            },
+            "secondClass": {
+                "noOption": 29,
+                "bicycle": 20,
+                "plug": 0
+        }},
         id5: {
             "id": "NB3",
-            "firstClass": 22,
-            "secondClass": 68
-        }
-    };
+            "firstClass": {
+                "noOption": 15,
+                "bicycle": 0,
+                "plug": 11
+            },
+            "secondClass": {
+                "noOption": 32,
+                "bicycle": 0,
+                "plug": 21
+            }
+        }};
 
     beforeEach(() => placeController.resetDatabase());
 

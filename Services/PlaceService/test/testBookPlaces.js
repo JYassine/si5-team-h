@@ -9,20 +9,30 @@ const placeController = require('../controllers/places');
 describe("Book seats", () => {
     const booking = {
         "id": "NB1",
-        "firstClass": 2,
-        "secondClass": 7
-    };
-
-    const bookingTooMuch = {
-        "id": "NP2",
-        "firstClass": 27,
-        "secondClass": 7
+        "firstClass":  {
+            "noOption": 2,
+            "bicycle": 1,
+            "plug": 2
+        },
+        "secondClass": {
+            "noOption": 4,
+            "bicycle": 4,
+            "plug": 1
+        }
     };
 
     const expectedResult = {
         "id": "NB1",
-        "firstClass": 6,
-        "secondClass": 14
+        "firstClass": {
+            "noOption": 9,
+            "bicycle": 4,
+            "plug": 6
+        },
+        "secondClass": {
+            "noOption": 21,
+            "bicycle": 15,
+            "plug": 8
+        }
     };
 
     beforeEach(() => placeController.resetDatabase());

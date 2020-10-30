@@ -7,7 +7,6 @@ async function bookPlaces(placesInfo) {
     const bookedTrain = db.get('places')
         .filter({id: placesInfo.id})
         .value()[0];
-    // const updatedSeatsFirst = bookedTrain.firstClass - placesInfo.firstClass;
     const updatedSeatsFirst = {
         "noOption": updateSeatsNumber(bookedTrain.firstClass.noOption, placesInfo.firstClass.noOption),
         "bicycle": updateSeatsNumber(bookedTrain.firstClass.bicycle, placesInfo.firstClass.bicycle),
