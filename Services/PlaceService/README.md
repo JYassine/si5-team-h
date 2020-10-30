@@ -24,8 +24,11 @@ Response Body
 ```json
 {   
     "id": "{String}",
-    "firstClass": "{Integer}",
-    "secondClass": "{Integer}"       
+    "firstClass": {
+        "noOption": "{Integer}",
+        "bicycle": "{Integer}",
+        "plug": "{Integer}"
+    }      
 }
 ```
 
@@ -36,7 +39,15 @@ Request Body
 ```json
 {   
     "id": "{String}",
-    "firstClass": "{Integer}",
-    "secondClass": "{Integer}"       
+    "firstClass": {
+        "noOption": "{Integer}",
+        "bicycle": "{Integer}",
+        "plug": "{Integer}"
+    },
+    "secondClass": {
+        "noOption": "{Integer}",
+         "bicycle": "{Integer}",
+         "plug": "{Integer}"
+    }      
 }
 ```
