@@ -8,16 +8,8 @@ Service runs on port 4006
 - npm test
 
 ## Exposed API
-POST /place => returns number of seats available in a train
+POST /place/:idTrain => returns number of seats available in a train
 
-Request Body
-----
-
-```json
-{
-    "id" : "{String}"   
-}
-```
 
 Response Body
 ----
