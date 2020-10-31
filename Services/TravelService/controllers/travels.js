@@ -1,16 +1,16 @@
 const low = require('lowdb')
 const fileSync = require('lowdb/adapters/FileSync')
-const adapter = new fileSync('data/db.json')
+const adapter = new fileSync('./db.json')
 const db = low(adapter)
 
 
-db.defaults({ travels: []})
+db.defaults({ trains: []})
     .write()
 
 
-if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de départ
-    db.get('travels').remove({}).write()
-    db.get('travels')
+if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de départ
+    db.get('trains').remove({}).write()
+    db.get('trains')
         .push(
             {
                 "id": "NP1",
@@ -29,6 +29,16 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
                 "departureTime": "8h30",
                 "arrivingTime": "13h00",
                 "price": 59,
+                "options":["bicycle","plug"],
+                "taken":false
+            },
+            {
+                "id": "PB1",
+                "from": "Paris",
+                "to": "Brest",
+                "departureTime": "14h00",
+                "arrivingTime": "17h00",
+                "price": 19,
                 "options":["bicycle","plug"],
                 "taken":false
             },
@@ -67,13 +77,15 @@ if (db.has('travels').value()) { //Reset de la BD avec la liste des voyages de d
 }
 
 
-
-
-async function travels(request) {
+async function getTravels(request) {
+    const from = request.from
+    const to = request.to
     const options = request.options
     try {
         db.read()
-        return db.get('travels')
+
+        var result = []
+        var directTrains = db.get('trains')
             .filter({taken: false})
             .filter(function (travel) {
                 let allOptionsGood = true
@@ -82,7 +94,66 @@ async function travels(request) {
                 }
                 return allOptionsGood
             })
+            .filter({from: from})
+            .filter({to: to})
             .value()
+            .forEach(element => {
+                result.push([element])
+            });
+
+            
+        var trainsWithGoodFrom = db.get('trains')
+            .filter({taken: false})
+            .filter(function (travel) {
+                let allOptionsGood = true
+                for (const option in options) {
+                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                }
+                return allOptionsGood
+            })
+            .filter({from: from})
+            .filter(function (train) {return to != train.to})
+            .value();
+
+
+
+        for (var i = 0; i < trainsWithGoodFrom.length; i++){
+            db.get('trains')
+                .filter({taken: false})
+                .filter(function (travel) {
+                    let allOptionsGood = true
+                    for (const option in options) {
+                        allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                    }
+                    return allOptionsGood
+                })
+                .filter({to: to})
+                .filter(function (train) {//Filtre pour que les train ai une correspondance au même endroit
+                    return trainsWithGoodFrom[i].to == train.from;
+                })
+                .filter(function (train) {//Filtre pour que la correspondance soit en raccord avec le temps
+                    return trainsWithGoodFrom[i].arrivingTime < train.departureTime;
+                })
+                .value()
+                .forEach(element => {
+                    result.push([trainsWithGoodFrom[i], element])
+                });
+        }
+
+
+        return result;
+
+
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+async function travelById(idTravel) {
+    try {
+        db.read()
+        return db.get('travels')
+            .find(element => element.id == idTravel)
     } catch (err) {
         console.error(err)
     }
@@ -90,5 +161,6 @@ async function travels(request) {
 
 
 module.exports = {
-    getTravels: travels
+    getTravels,
+    getTravelById : travelById
 };
