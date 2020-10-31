@@ -20,7 +20,7 @@
     },
     "place": {
       "apiName": "place",
-      "host": "http://locahost",
+      "host": "http://localhost",
       "port": 4006,
       "url": "http://localhost:4006/"
     }
