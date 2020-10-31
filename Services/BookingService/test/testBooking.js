@@ -6,7 +6,6 @@ const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
 const db = low(adapter)
 const bookingController = require('../controllers/addBooking')
-const mockery = require("mockery");
 
 const request = { id: "B1", idTravel: "NP1", options: [] }
 const requestPrice = {
