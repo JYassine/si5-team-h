@@ -14,23 +14,26 @@ mapOptions.set("bicycle", 10)
 mapOptions.set("plug", 2)
 
 
-const getTotalPrice = async (body) =>{
+const getTotalPrice = async (body) => {
     const priceTravel = await travelApi.getTravelPrice(body.idTravel);
-    const bookingTotalPrice = calculateTotalPrice(body,priceTravel);
+    const bookingTotalPrice = calculateTotalPrice(body, priceTravel);
     db.get("priceBookingOptions").push(bookingTotalPrice).write();
     return bookingTotalPrice;
-    
+
 };
 
-const calculateTotalPrice = (body, priceTravel)=>{
-    let sumOptions = 0;
-    body.options.forEach(option => {
-        sumOptions += mapOptions.get(option)
-    });
+const calculateTotalPrice = (body, priceTravel) => {
+    var sumOptions = 0;
+    if (body.options.length != 0) {
+        body.options.forEach(option => {
+            sumOptions += mapOptions.get(option)
+        });
+    }
+    let totalP = sumOptions + priceTravel;
     let bookingTotalPrice = {
         id: uniqid(body.idTravel + "-"),
         idTravel: body.idTravel,
-        totalPrice: sumOptions+priceTravel
+        totalPrice: totalP
     }
 
     return bookingTotalPrice
