@@ -19,20 +19,19 @@ const addBooking = async (body) => {
 
     const newBooking = {
         id: body.id,
+        idAgency: body.idAgency,
         idTravel: body.idTravel,
         options: body.options,
         price: body.price
     }
-    //console.log(newBooking)
     db.get("bookings").push(newBooking).write();
-    console.log("bla")
 };
 
 async function getPrice(idTravel,options){
     //TODO: Changer locahost machin par process.env PriceService
     //${process.env.PAYMENT_ADDR}
 
-    return (await axios.post("http://localhost:4005", {
+    return (await axios.post("http://localhost:4005/price", {
         idTravel: idTravel,
         options: options
     })).data

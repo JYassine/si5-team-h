@@ -6,10 +6,12 @@ const db = low(adapter)
 db.defaults({ bookings: [] })
     .write()
 
-const bookings = () => {
+const bookings = (reqBody) => {
     try {
         db.read()
-        return db.get('bookings').value()
+        return db.get('bookings')
+            .filter({idAgency: reqBody.idAgency})
+            .value()
     } catch (err) {
         console.error(err);
     }

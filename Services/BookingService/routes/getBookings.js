@@ -5,7 +5,7 @@ const bookingController = require('../controllers/bookings');
 
 bookingRooter.route('/').get((req, res) => {
     try {
-        res.status(200).json(bookingController.bookings());
+        res.status(200).json(bookingController.bookings(req.body));
     } catch (err) {
         next(err);
     }
