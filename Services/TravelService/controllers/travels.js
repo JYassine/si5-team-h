@@ -152,7 +152,7 @@ async function getTravels(request) {
 async function travelById(idTravel) {
     try {
         db.read()
-        return db.get('travels')
+        return db.get('trains')
             .find(element => element.id == idTravel)
     } catch (err) {
         console.error(err)
