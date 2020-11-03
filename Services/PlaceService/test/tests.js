@@ -1,0 +1,2 @@
+require('./testGetPlaces');
+require('./testBookPlaces');

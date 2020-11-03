@@ -1,0 +1,29 @@
+{
+  "places": [
+    {
+      "id": "NP1",
+      "firstClass": 14,
+      "secondClass": 25
+    },
+    {
+      "id": "NP2",
+      "firstClass": 26,
+      "secondClass": 71
+    },
+    {
+      "id": "NB1",
+      "firstClass": 8,
+      "secondClass": 21
+    },
+    {
+      "id": "NB2",
+      "firstClass": 32,
+      "secondClass": 59
+    },
+    {
+      "id": "NB3",
+      "firstClass": 22,
+      "secondClass": 68
+    }
+  ]
+}

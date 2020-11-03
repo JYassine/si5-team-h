@@ -8,11 +8,10 @@ const registry = require("./registry");
  * POST /bookings
  * Payload: {
  *     "id": string,
- *     "idTravel": string
+ *     "idsTravel": [string]
  * }
  */
 bookingRouter.route('/').post(async (req, res) => {
-    console.log(req.body);
     axios.post(registry.services.booking.url + 'bookings', req.body)
         .then(response => res.status(response.status).send())
         .catch(err => console.log("Error sending request to booking service", err));
