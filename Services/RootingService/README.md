@@ -44,14 +44,14 @@ POST /account/inscription => Creation of the travel agency account
     "mail": "test123@gmail.com"   
 }
 ```
-GET /account/connexion => Return the agency ID if the login and password are correct
+POST /account/connexion => Return the agency ID if the login and password are correct
 ```json
 {   
     "login": "travel",
     "password": "bla" 
 }
 ```
-GET /account => Return the information of the agency associate to the given ID
+POST /account => Return the information of the agency associate to the given ID
 ```json
 {"id":"agency1f54rz3dekkgy2lh2a"}
 ```
