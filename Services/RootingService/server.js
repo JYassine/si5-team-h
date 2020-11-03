@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 
 const PORT = 4002;
 
-const dotenvConfig = dotenv.config()
+const dotenvConfig = dotenv.config();
 if (dotenvConfig.error) {
   throw dotenvConfig.error
 }

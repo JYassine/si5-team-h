@@ -9,7 +9,8 @@ const registry = require('./registry');
  * id is the id of the train
  */
 placeRouter.route('/:id').get(async (req, res) => {
-    axios.get(registry.services.place.url + `place/${req.params.id}`)
+    console.log(process.env.PLACE_ADDR);
+    axios.get(process.env.PLACE_ADDR + `/place/${req.params.id}`)
         .then(response => res.status(response.status).send(response.data))
         .catch(err => {
             res.status(err.response.status).send(err.response.data);
