@@ -1,4 +1,24 @@
 # Status
+# Week 45
+
+Avancement: Orange Flag
+- Dockerisation des services
+- Ajout de CustomerService
+- Ajout d'AccountService
+- Ajout de LateService
+- Update de Routing
+- Modification du fichier architectures:
+    - Ajout choix technologiques
+    - Changements par rapport à l'architecture initiale
+    - Faiblesses de notre architecture actuelle
+    - Solutions envisagées
+
+
+Travail à finir:
+- Pouvoir ajouter plusieurs clients à une réservation
+- Finalisation de LateService
+- Préparation de la soutenance
+
 # Week 44
 
 Avancement: Green Flag
