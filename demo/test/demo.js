@@ -26,13 +26,6 @@ describe('demo', () => {
         axios.get(rootingService + "/travels", {params :{"options":[], "from":"Nice", "to":"Brest"}})
             .then( (response) => {
                 const result = response.data
-                /*expect(result.length).to.equal(4)
-
-                expect(result[3][0].from).to.equal("Nice")
-                expect(result[3][0].to).to.equal("Paris")
-
-                expect(result[3][1].from).to.equal("Paris")
-                expect(result[3][1].to).to.equal("Brest")*/
 
                 console.log(MAGENTA_COLOR, "Le resultat de cette requete est :")
                 console.log(WHITE_COLOR, result)
@@ -44,12 +37,13 @@ describe('demo', () => {
                 console.log(GREEN_COLOR, "L'agence decide de reserver le quatrième des trajets qui est celui avec correspondance :", YELLOW_COLOR, "NP2", GREEN_COLOR, "&", YELLOW_COLOR, "PB1")
                 console.log(MAGENTA_COLOR, "Le logiciel envoie donc une requete a l'API sur la route", YELLOW_COLOR, "/bookings")
                 console.log(MAGENTA_COLOR, "La requete est un", YELLOW_COLOR, "POST", MAGENTA_COLOR, "contenant en", YELLOW_COLOR, "parametres ", MAGENTA_COLOR, ":")
-                console.log(WHITE_COLOR, { id: idBooking, idTravels: [travel[0].id, travel[1].id]})
+                console.log(WHITE_COLOR, { idTravels: [travel[0].id, travel[1].id], options: []})
 
-                axios.post(rootingService + "/bookings", { id: idBooking, idTravels: [travel[0].id, travel[1].id]})
+                axios.post(rootingService + "/bookings", { idTravels: [travel[0].id, travel[1].id], options: []})
                     .then(function (response) {
-                        expect(response.status).to.equal(201)
-                        console.log("response : ", response)
+                        console.log(MAGENTA_COLOR, "Le resultat de cette requete est :")
+                        console.log(WHITE_COLOR, response.data)
+                        console.log()
                     })
                     
                     /*.then( (travel) => {

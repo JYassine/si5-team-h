@@ -9,7 +9,7 @@ db.defaults({ bookings: [] })
     .write()
 
 const addBooking = async (body) => {
-    var id = 1
+    var id = Math.floor(Math.random() * 200).toString();
 
     if (idAlreadyExist(id)) {
         throw Error("this id already exist in database");
@@ -17,16 +17,13 @@ const addBooking = async (body) => {
     //Calculer le prix
     const price = await travelAPI.getPrice(body);
 
-    console.log("price : ", price)
+    db.get("bookings").push({"id":id, "idTravels": body.idTravels, "options": body.options}).write();
 
     //Obtenir un lien de payment pour ce prix
-    /*var link = await travelAPI.getLinkPayement({payment_method: "Paypal", idBooking: id, currency: "USD", total: price})
+    var payment = await travelAPI.getLinkPayement({payment_method: "Paypal", idBooking: id, currency: "USD", total: price})
 
-    console.log(link)
 
-    db.get("bookings").push(body).write();*/
-
-    return "link"
+    return payment.linkPayment
 };
 
 

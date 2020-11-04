@@ -13,7 +13,10 @@ bookingRooter.post('/', [body('idTravels').isArray(), body('options').isArray()]
         }
 
         try {
-            res.status(201).json(bookingController.addBooking(req.body));
+            bookingController.addBooking(req.body).then(response =>
+                {
+                    res.status(201).send(response)
+                })
 
             for (var i = 0; i < req.body.idTravels.length; i++){
                 travelAPI.updateTravel(req.body.idTravels[i])
