@@ -13,12 +13,14 @@ install:
   - cd ../TravelService && npm install
   - cd ../PaymentService && npm install
   - cd ../PriceService && npm install
+  - cd ../CustomerService && npm install
   
 script :
   - cd ../BookingService && npm test
   - cd ../PaymentService && npm test
   - cd ../PriceService && npm test
   - cd ../TravelService && npm test
+  - cd ../CustomerService && npm test
   
 notifications:
   - slack: informatiquep-kyw7477:eauGdwBvsrr6cvcg9rkgxELU

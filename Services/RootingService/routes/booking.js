@@ -8,7 +8,7 @@ const registry = require("./registry");
  * POST /bookings
  * Payload: {
  *     "id": string,
- *     "idsTravel": [string]
+ *     "idTravels": [string]
  * }
  */
 bookingRouter.route('/').post(async (req, res) => {

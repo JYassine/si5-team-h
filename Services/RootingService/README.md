@@ -18,7 +18,7 @@ POST /bookings => Add a new booking
 ```json
 {   
     "id" : "{String}",
-    "idsTravel" : "[{String}]"     
+    "idTravels" : "[{String}]"     
 }
 ```
 
