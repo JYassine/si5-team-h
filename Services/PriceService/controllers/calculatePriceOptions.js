@@ -27,7 +27,7 @@ const getTotalPrice = async (body) => {
     //On ajoute le resultat dans la BDD
     db.get("priceBookingOptions").push(bookingTotalPrice).write();
 
-    return bookingTotalPrice;
+    return bookingTotalPrice.totalPrice;
 };
 
 //Retourne un JSON contenant le prix final en prenant en parametre les trains et le prix de base de ces derniers
@@ -35,6 +35,7 @@ const calculateTotalPrice = (body, priceTravel) => {
     //Calcul le prix des options
     var sumOptions = 0;
     if (body.options.length != 0) {
+        console.log("opt", body.options)
         body.options.forEach(option => {
             sumOptions += mapOptions.get(option)
         });

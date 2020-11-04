@@ -44,14 +44,15 @@ describe('demo', () => {
                 console.log(GREEN_COLOR, "L'agence decide de reserver le quatrième des trajets qui est celui avec correspondance :", YELLOW_COLOR, "NP2", GREEN_COLOR, "&", YELLOW_COLOR, "PB1")
                 console.log(MAGENTA_COLOR, "Le logiciel envoie donc une requete a l'API sur la route", YELLOW_COLOR, "/bookings")
                 console.log(MAGENTA_COLOR, "La requete est un", YELLOW_COLOR, "POST", MAGENTA_COLOR, "contenant en", YELLOW_COLOR, "parametres ", MAGENTA_COLOR, ":")
-                console.log(WHITE_COLOR, { id: idBooking, idsTravel: [travel[0].id, travel[1].id]})
+                console.log(WHITE_COLOR, { id: idBooking, idTravels: [travel[0].id, travel[1].id]})
 
-                axios.post(rootingService + "/bookings", { id: idBooking, idsTravel: [travel[0].id, travel[1].id]})
+                axios.post(rootingService + "/bookings", { id: idBooking, idTravels: [travel[0].id, travel[1].id]})
                     .then(function (response) {
                         expect(response.status).to.equal(201)
-                        console.log(GREEN_COLOR, "RESPONSE :", GREEN_COLOR, response.status)
-                        return travel
-                    }).then( (travel) => {
+                        console.log("response : ", response)
+                    })
+                    
+                    /*.then( (travel) => {
                         var price = 0
                         for (var i = 0; i < travel.length; i++){
                             price += travel[i].price;
@@ -71,7 +72,7 @@ describe('demo', () => {
                             console.log(MAGENTA_COLOR, "Asynchron request to check if booking ID exist -> PaymentService > BookingService")
                             console.log(GREEN_COLOR, "RESPONSE :", GREEN_COLOR, JSON.stringify(response.data))
                         })
-                    })
+                    })*/
                 return travel
             });
     });

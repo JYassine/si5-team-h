@@ -3,15 +3,30 @@ const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
 const db = low(adapter)
 
+const travelAPI = require('../api/travelApi');
+
 db.defaults({ bookings: [] })
     .write()
 
-const addBooking = (body) => {
+const addBooking = async (body) => {
+    var id = 1
 
-    if (idAlreadyExist(body.id)) {
+    if (idAlreadyExist(id)) {
         throw Error("this id already exist in database");
     }
-    db.get("bookings").push(body).write();
+    //Calculer le prix
+    const price = await travelAPI.getPrice(body);
+
+    console.log("price : ", price)
+
+    //Obtenir un lien de payment pour ce prix
+    /*var link = await travelAPI.getLinkPayement({payment_method: "Paypal", idBooking: id, currency: "USD", total: price})
+
+    console.log(link)
+
+    db.get("bookings").push(body).write();*/
+
+    return "link"
 };
 
 

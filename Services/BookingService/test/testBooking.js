@@ -10,7 +10,7 @@ const bookingController = require('../controllers/addBooking')
 
 describe('Add a new booking', () => {
   it('should add a new booking in the database', () => {
-    bookingController.addBooking({ id: "B1", idsTravel: "[NP1]" })
+    bookingController.addBooking({ id: "B1", idTravels: "[NP1]" })
     db.read()
     const booking = db.get('bookings')
       .find({ id: "B1" })

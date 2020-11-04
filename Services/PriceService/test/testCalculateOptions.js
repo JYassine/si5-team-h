@@ -76,7 +76,7 @@ describe('Calculate options for a booking', function () {
 
     it('should return the price sum of all options taken with a 2 trains from route', () => {
         calculatePriceController.getTotalPrice({idTravels:["NP2", "PB1"], options:["bicycle", "plug"]}).then(response => {
-            expect(response.totalPrice).to.equal(82);
+            expect(response).to.equal(82);
         })
     })
 
