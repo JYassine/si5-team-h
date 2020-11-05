@@ -2,6 +2,7 @@ const low = require('lowdb')
 const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
 const db = low(adapter)
+const axios = require('axios').default;
 
 const travelAPI = require('../api/travelApi');
 
@@ -9,11 +10,13 @@ db.defaults({ bookings: [] })
     .write()
 
 const addBooking = async (body) => {
+
     var id = Math.floor(Math.random() * 200).toString();
 
     if (idAlreadyExist(id)) {
         throw Error("this id already exist in database");
     }
+
     //Calculer le prix
     const price = await travelAPI.getPrice(body);
 
@@ -24,7 +27,19 @@ const addBooking = async (body) => {
 
 
     return payment.linkPayment
+
 };
+
+async function getPrice(idTravel,options){
+    //TODO: Changer locahost machin par process.env PriceService
+    //${process.env.PAYMENT_ADDR}
+
+    return (await axios.post("http://localhost:4005/price", {
+        idTravel: idTravel,
+        options: options
+    })).data
+
+}
 
 
 const idAlreadyExist = (idBooking) => {

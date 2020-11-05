@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
+const axios = require("axios");
 const nock = require('nock');
-const axios = require('axios').default;
+const MockAdapter = require("axios-mock-adapter");
 const low = require('lowdb')
 const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
@@ -15,6 +16,7 @@ if (dotenvConfig.error) {
 
 
 describe('Add a new booking', () => {
+
   it('should add a new booking in the database', () => {
     nock(`${process.env.PRICE_ADDR}`)
         .post('/price', { idTravels: ["NP1"], options: [] })
@@ -28,13 +30,12 @@ describe('Add a new booking', () => {
         .reply(201, "link.fr")
 
     bookingController.addBooking({ idTravels: ["NP1"], options: [] })
+
     db.read()
     /*const booking = db.get('bookings')
       .find({ id: "B1" })
       .value()
-
     expect(booking.id).to.equal('B1')*/
-
   });
 });
 
