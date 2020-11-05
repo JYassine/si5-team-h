@@ -1,5 +1,6 @@
 const expect = require('chai').expect;
 const axios = require("axios");
+const nock = require('nock');
 const MockAdapter = require("axios-mock-adapter");
 const low = require('lowdb')
 const fileSync = require('lowdb/adapters/FileSync')
