@@ -3,14 +3,14 @@ const axios = require('axios').default;
 const travelController = require('../controllers/travels')
 const nock = require('nock')
 
-describe("Get travels NP",function (){
-    const requestTravelsNoOptions = {"options":[], "from":"Nice", "to":"Paris"}
-    const requestPlug = {"options":["plug"], "from":"Nice", "to":"Paris"}
-    const requestBicycle = {"options":["bicycle"], "from":"Nice", "to":"Paris"}
-    const requestFullOptions = {"options":["bicycle","plug"], "from":"Nice", "to":"Paris"}
+describe("Get travels NP", function () {
+    const requestTravelsNoOptions = {"options": [], "from": "Nice", "to": "Paris"}
+    const requestPlug = {"options": ["plug"], "from": "Nice", "to": "Paris"}
+    const requestBicycle = {"options": ["bicycle"], "from": "Nice", "to": "Paris"}
+    const requestFullOptions = {"options": ["bicycle", "plug"], "from": "Nice", "to": "Paris"}
     const expectedResponseTravelsNoOptions = [
         [
-                {
+            {
                 "id": "NP1",
                 "from": "Nice",
                 "to": "Paris",
@@ -18,6 +18,7 @@ describe("Get travels NP",function (){
                 "arrivingTime": "15h30",
                 "price": 29,
                 "options": [],
+                "pmr": false,
                 "taken": false
             }
         ],
@@ -33,6 +34,7 @@ describe("Get travels NP",function (){
                     "bicycle",
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             }
         ]
@@ -50,6 +52,7 @@ describe("Get travels NP",function (){
                     "bicycle",
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             }
         ]
@@ -67,6 +70,7 @@ describe("Get travels NP",function (){
                     "bicycle",
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             }
         ]
@@ -84,23 +88,32 @@ describe("Get travels NP",function (){
                     "bicycle",
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             }
         ]
     ]
-    it("should get all the travels with no options (i.e all travels)",function(){getTravels(requestTravelsNoOptions,expectedResponseTravelsNoOptions)})
-    it("should get all the travels with plug option",function (){getTravels(requestPlug,expectedResponseTravelsWithPlug)})
-    it("should get all the travels with bicycle option",function (){getTravels(requestBicycle,expectedResponseTravelsWithBicycle)})
-    it("should get all the travels with full options",function (){getTravels(requestFullOptions,expectedResponseTravelsFullOptions)})
+    it("should get all the travels with no options (i.e all travels)", function () {
+        getTravels(requestTravelsNoOptions, expectedResponseTravelsNoOptions)
+    })
+    it("should get all the travels with plug option", function () {
+        getTravels(requestPlug, expectedResponseTravelsWithPlug)
+    })
+    it("should get all the travels with bicycle option", function () {
+        getTravels(requestBicycle, expectedResponseTravelsWithBicycle)
+    })
+    it("should get all the travels with full options", function () {
+        getTravels(requestFullOptions, expectedResponseTravelsFullOptions)
+    })
 
-    function getTravels(request,expectedResponse){
-        travelController.getTravels(request).then((response)=>{
+    function getTravels(request, expectedResponse) {
+        travelController.getTravels(request).then((response) => {
             nock('http://localhost:4001')
                 .post('/travels', request)
                 .reply(201, response)
-        }).then(()=>{
-            axios.post("http://localhost:4001/travels",request)
-                .then(response =>{
+        }).then(() => {
+            axios.post("http://localhost:4001/travels", request)
+                .then(response => {
                     expect(response.data).to.not.equal(undefined)
                     expect(response.data).to.eql(expectedResponse)
                 })
@@ -108,8 +121,8 @@ describe("Get travels NP",function (){
     }
 })
 
-describe("Get travels NB",function (){
-    const requestTravelsNoOptions = {"options":[], "from":"Nice", "to":"Brest"}
+describe("Get travels NB", function () {
+    const requestTravelsNoOptions = {"options": [], "from": "Nice", "to": "Brest"}
     const expectedResponseTravelsNoOptions = [
         [
             {
@@ -123,6 +136,7 @@ describe("Get travels NB",function (){
                     "bicycle",
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             }
         ],
@@ -137,6 +151,7 @@ describe("Get travels NB",function (){
                 "options": [
                     "bicycle"
                 ],
+                "pmr": false,
                 "taken": false
             }
         ],
@@ -151,6 +166,7 @@ describe("Get travels NB",function (){
                 "options": [
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             }
         ],
@@ -166,6 +182,7 @@ describe("Get travels NB",function (){
                     "bicycle",
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             },
             {
@@ -179,21 +196,24 @@ describe("Get travels NB",function (){
                     "bicycle",
                     "plug"
                 ],
+                "pmr": true,
                 "taken": false
             }
         ]
     ]
-    
-    it("should get all the travels with no options with 1 travel with correspondance",function(){getTravels(requestTravelsNoOptions,expectedResponseTravelsNoOptions)})
 
-    function getTravels(request,expectedResponse){
-        travelController.getTravels(request).then((response)=>{
+    it("should get all the travels with no options with 1 travel with correspondance", function () {
+        getTravels(requestTravelsNoOptions, expectedResponseTravelsNoOptions)
+    })
+
+    function getTravels(request, expectedResponse) {
+        travelController.getTravels(request).then((response) => {
             nock('http://localhost:4001')
                 .post('/travels', request)
                 .reply(201, response)
-        }).then(()=>{
-            axios.post("http://localhost:4001/travels",request)
-                .then(response =>{
+        }).then(() => {
+            axios.post("http://localhost:4001/travels", request)
+                .then(response => {
                     expect(response.data).to.not.equal(undefined)
                     expect(response.data).to.eql(expectedResponse)
                 })

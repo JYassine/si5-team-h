@@ -5,18 +5,21 @@ const travelAPI = require('../api/travelApi');
 
 const { body, validationResult } = require('express-validator');
 
-bookingRooter.post('/', [body('id').isString(), body('idsTravel').isString()]
+bookingRooter.post('/', [body('idTravels').isArray(), body('options').isArray()]
     , (req, res, next) => {
-        /*const errors = validationResult(req);
+        const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
-        }*/
+        }
 
         try {
-            res.status(201).json(bookingController.addBooking(req.body));
+            bookingController.addBooking(req.body).then(response =>
+                {
+                    res.status(201).send(response)
+                })
 
-            for (var i = 0; i < req.body.idsTravel.length; i++){
-                travelAPI.updateTravel(req.body.idsTravel[i])
+            for (var i = 0; i < req.body.idTravels.length; i++){
+                travelAPI.updateTravel(req.body.idTravels[i])
             }
 
         } catch (err) {
