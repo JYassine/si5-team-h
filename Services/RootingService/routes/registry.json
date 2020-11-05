@@ -8,15 +8,21 @@
     },
     "booking": {
       "apiName": "booking",
-      "host": "http://locahost",
+      "host": "http://localhost",
       "port": 4004,
       "url": "http://localhost:4004/"
     },
     "payment": {
       "apiName": "payment",
-      "host": "http://locahost",
+      "host": "http://localhost",
       "port": 4003,
       "url": "http://localhost:4003/"
+    },
+    "place": {
+      "apiName": "place",
+      "host": "http://localhost",
+      "port": 4006,
+      "url": "http://localhost:4006/"
     }
   }
 }
