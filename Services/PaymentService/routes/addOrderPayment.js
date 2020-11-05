@@ -18,9 +18,6 @@ paymentRooter.post('/',
       }
 
       bookingApi.getAllBookings().then((response) => {
-         if (!checkBookingIdExist(response.data, req.body.idBooking)) {
-            throw new exception.BookingIdException("The booking id specified don't exist")
-         }
 
          return paymentController.addOrderPayment(req.body)
 
