@@ -24,7 +24,6 @@ const getAllAgencies = async (idTravel) => {
             return booking.idsTravel.includes(idTravel)
         })
         .value()
-    console.log(bookings)
     return bookings
 
 }

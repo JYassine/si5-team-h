@@ -1,1 +1,9 @@
-
+{
+  "bookings": [
+    {
+      "id": "B1",
+      "options": "[]",
+      "price": 500
+    }
+  ]
+}
