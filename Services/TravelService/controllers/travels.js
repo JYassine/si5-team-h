@@ -4,7 +4,7 @@ const adapter = new fileSync('./db.json')
 const db = low(adapter)
 
 
-db.defaults({ trains: []})
+db.defaults({trains: []})
     .write()
 
 
@@ -19,8 +19,9 @@ if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de dé
                 "departureTime": "9h30",
                 "arrivingTime": "15h30",
                 "price": 29,
-                "options":[],
-                "taken":false
+                "options": [],
+                "pmr": false,
+                "taken": false
             },
             {
                 "id": "NP2",
@@ -29,8 +30,9 @@ if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de dé
                 "departureTime": "8h30",
                 "arrivingTime": "13h00",
                 "price": 59,
-                "options":["bicycle","plug"],
-                "taken":false
+                "options": ["bicycle", "plug"],
+                "pmr": true,
+                "taken": false
             },
             {
                 "id": "PB1",
@@ -39,8 +41,9 @@ if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de dé
                 "departureTime": "14h00",
                 "arrivingTime": "17h00",
                 "price": 19,
-                "options":["bicycle","plug"],
-                "taken":false
+                "options": ["bicycle", "plug"],
+                "pmr": true,
+                "taken": false
             },
             {
                 "id": "NB1",
@@ -49,8 +52,9 @@ if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de dé
                 "departureTime": "6h00",
                 "arrivingTime": "16h00",
                 "price": 89,
-                "options":["bicycle","plug"],
-                "taken":false
+                "options": ["bicycle", "plug"],
+                "pmr": true,
+                "taken": false
             },
             {
                 "id": "NB2",
@@ -59,8 +63,9 @@ if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de dé
                 "departureTime": "6h00",
                 "arrivingTime": "16h00",
                 "price": 89,
-                "options":["bicycle"],
-                "taken":false
+                "options": ["bicycle"],
+                "pmr": false,
+                "taken": false
             },
             {
                 "id": "NB3",
@@ -69,8 +74,9 @@ if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de dé
                 "departureTime": "6h00",
                 "arrivingTime": "16h00",
                 "price": 89,
-                "options":["plug"],
-                "taken":false
+                "options": ["plug"],
+                "pmr": true,
+                "taken": false
             }
         )
         .write()
@@ -78,15 +84,23 @@ if (db.has('trains').value()) { //Reset de la BD avec la liste des trains de dé
 
 
 async function getTravels(request) {
-    const from = request.from
-    const to = request.to
-    const options = request.options
+    const from = request.from;
+    const to = request.to;
+    const options = request.options;
+    const pmr = request.pmr;
     try {
-        db.read()
+        db.read();
 
         var result = []
         var directTrains = db.get('trains')
             .filter({taken: false})
+            .filter(function (train) {
+                if (pmr === true) {
+                    return train.pmr === true
+                } else {
+                    return true;
+                }
+            })
             .filter(function (travel) {
                 let allOptionsGood = true
                 for (const option in options) {
@@ -101,9 +115,16 @@ async function getTravels(request) {
                 result.push([element])
             });
 
-            
+
         var trainsWithGoodFrom = db.get('trains')
             .filter({taken: false})
+            .filter(function (train) {
+                if (pmr === true) {
+                    return train.pmr === true
+                } else {
+                    return true;
+                }
+            })
             .filter(function (travel) {
                 let allOptionsGood = true
                 for (const option in options) {
@@ -112,12 +133,13 @@ async function getTravels(request) {
                 return allOptionsGood
             })
             .filter({from: from})
-            .filter(function (train) {return to != train.to})
+            .filter(function (train) {
+                return to != train.to
+            })
             .value();
 
 
-
-        for (var i = 0; i < trainsWithGoodFrom.length; i++){
+        for (var i = 0; i < trainsWithGoodFrom.length; i++) {
             db.get('trains')
                 .filter({taken: false})
                 .filter(function (travel) {
@@ -162,5 +184,5 @@ async function travelById(idTravel) {
 
 module.exports = {
     getTravels,
-    getTravelById : travelById
+    getTravelById: travelById
 };

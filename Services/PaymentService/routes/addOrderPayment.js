@@ -10,7 +10,7 @@ paymentRooter.post('/',
    [body('payment_method').isString(),
    body('idBooking').isString(),
    body('currency').isString(),
-   body('total').isString()]
+   body('total').isNumeric()]
    , (req, res, next) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -18,12 +18,11 @@ paymentRooter.post('/',
       }
 
       bookingApi.getAllBookings().then((response) => {
-         if (!checkBookingIdExist(response.data, req.body.idBooking)) {
-            throw new exception.BookingIdException("The booking id specified don't exist")
-         }
+
          return paymentController.addOrderPayment(req.body)
 
       }).then((response) => {
+
          return res.status(201).json(response);
       }).
          catch((error) => {
@@ -36,7 +35,6 @@ paymentRooter.post('/',
 paymentRooter.post('/execute/:id', async (req, res, next) => {
 
    try {
-
       const result = await paymentController.validateOrderPayment(req.params.id)
       res.status(200).json(result);
    }catch(err){

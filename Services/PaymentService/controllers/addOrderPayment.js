@@ -4,6 +4,7 @@ const adapter = new fileSync('db.json')
 const db = low(adapter)
 require('dotenv').config()
 const uniqid = require('uniqid');
+const bookingApi = require('../api/bookingApi')
 const pathLinkPayment = `${process.env.PAYMENT_ADDR}`+'/payment/execute/';
 const exceptionOrder = require("../exception/OrderPaymentNotFoundException")
 
@@ -59,8 +60,10 @@ const validateOrderPayment = async (linkPaymentId) =>{
     
     db.get('paymentDone').push(statusOrder).write();
     db.get('orderPayments').remove({ id: idPayment }).write();
-    return statusOrder;
 
+    bookingApi.payementRelease(orderPayment.idBooking);
+
+    return statusOrder;
 }
 
 
