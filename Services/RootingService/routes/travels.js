@@ -14,7 +14,6 @@ travelsRouter.route('/').get(async (req, res) => {
 });
 
 travelsRouter.route('/:id').get(async (req, res) => {
-    console.log(process.env.TRAVEL_ADDR + `/travels/${req.params.id}`);
     axios.get(process.env.TRAVEL_ADDR + `/travels/${req.params.id}`)
         .then(response => {
             console.log(response.data);
