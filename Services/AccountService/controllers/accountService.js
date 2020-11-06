@@ -1,7 +1,6 @@
 const low = require('lowdb')
 const fileSync = require('lowdb/adapters/FileSync')
 const adapter = new fileSync('db.json')
-const travelApi = require("../api/travelApi")
 const db = low(adapter)
 const uniqId = require('uniqid');
 

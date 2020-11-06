@@ -7,6 +7,13 @@ const getAllBookings = async () => {
   return promiseBooking;
 };
 
+
+const payementRelease = (idBooking) => {
+  axios.get(`${process.env.BOOKING_ADDR}/bookings/paymentRelease/` + idBooking)
+    .catch(error => { throw new Error("Error on getting bookings : "+ error) });
+};
+
 module.exports = {
-  getAllBookings
+  getAllBookings,
+  payementRelease
 };

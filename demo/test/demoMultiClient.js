@@ -75,20 +75,27 @@ describe('demo', () => {
                                             .then(function (response) {
                                                 console.log(MAGENTA_COLOR, "Les liens de paiements sont renvoyés :")
                                                 console.log(WHITE_COLOR, response.data)
-                                                console.log()
 
                                             }).then((response) => {
                                                 axios.post(rootingService + "/bookings", { idTravels: [travel[0].id, travel[1].id], options: [] })
                                                     .then(function (response) {
                                                         console.log(WHITE_COLOR, response.data)
-                                                        console.log()
 
                                                     }).then((response) => {
                                                         axios.post(rootingService + "/bookings", { idTravels: [travel[0].id, travel[1].id], options: [] })
                                                             .then(function (response) {
                                                                 console.log(WHITE_COLOR, response.data)
                                                                 console.log()
+                                                                console.log(GREEN_COLOR, "Lorsque le systeme de payement externe a reussi a encaisser le montant il fait alors une requete pour chacun de ces lien")
 
+
+                                                                axios.post(response.data).then(function (response) {
+                                                                    console.log(MAGENTA_COLOR, "Le resultat de cette requete est :")
+                                                                    console.log(WHITE_COLOR, response.data)
+
+                                                                    console.log(GREEN_COLOR, "La reservation a donc reussis a être payé")
+
+                                                                })
                                                             })
 
                                                     });

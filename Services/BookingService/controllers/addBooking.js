@@ -25,7 +25,6 @@ const addBooking = async (body) => {
     //Obtenir un lien de payment pour ce prix
     var payment = await travelAPI.getLinkPayement({payment_method: "Paypal", idBooking: id, currency: "USD", total: price})
 
-
     return payment.linkPayment
 
 };

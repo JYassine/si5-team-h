@@ -35,7 +35,6 @@ paymentRooter.post('/',
 paymentRooter.post('/execute/:id', async (req, res, next) => {
 
    try {
-
       const result = await paymentController.validateOrderPayment(req.params.id)
       res.status(200).json(result);
    }catch(err){
