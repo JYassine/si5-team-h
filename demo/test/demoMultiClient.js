@@ -31,19 +31,19 @@ describe('demo', () => {
 
         console.log(MAGENTA_COLOR, "Envoie de trois requêtes a l'API sur la route", YELLOW_COLOR, "/customers")
 
-        axios.get(process.env.CUSTOMER_ADDR + "/customers", { params: { "firstName": "Jhon", "lastName": "Molt" } })
+        axios.get(rootingService + "/customers", { params: { "firstName": "Jhon", "lastName": "Molt" } })
             .then((response) => {
                 const resultCustomer = response.data
                 console.log(MAGENTA_COLOR, "Le resultat de ces 3 requêtes est :")
                 console.log(WHITE_COLOR, resultCustomer)
                 console.log()
-                axios.get(process.env.CUSTOMER_ADDR + "/customers", { params: { "firstName": "Chris", "lastName": "Molt" } })
+                axios.get(rootingService + "/customers", { params: { "firstName": "Chris", "lastName": "Molt" } })
                     .then((response) => {
                         const resultCustomer = response.data
                         console.log(WHITE_COLOR, resultCustomer)
                         console.log()
 
-                        axios.get(process.env.CUSTOMER_ADDR + "/customers", { params: { "firstName": "Agatha", "lastName": "Molt" } })
+                        axios.get(rootingService + "/customers", { params: { "firstName": "Agatha", "lastName": "Molt" } })
                             .then((response) => {
                                 const resultCustomer = response.data
                                 console.log(WHITE_COLOR, resultCustomer)
@@ -71,36 +71,49 @@ describe('demo', () => {
                                         console.log(WHITE_COLOR, { idTravels: [travel[0].id, travel[1].id], options: [""] })
                                         console.log(WHITE_COLOR, { idTravels: [travel[0].id, travel[1].id], options: [""] })
 
+                                        var payment1="";
+                                        var payment2="";
+
                                         axios.post(rootingService + "/bookings", { idTravels: [travel[0].id, travel[1].id], options: ["bicycle"] })
                                             .then(function (response) {
                                                 console.log(MAGENTA_COLOR, "Les liens de paiements sont renvoyés :")
                                                 console.log(WHITE_COLOR, response.data)
+                                                payment1 = response.data;
 
-                                            }).then((response) => {
                                                 axios.post(rootingService + "/bookings", { idTravels: [travel[0].id, travel[1].id], options: [] })
                                                     .then(function (response) {
                                                         console.log(WHITE_COLOR, response.data)
+                                                        payment2 = response.data
 
                                                     }).then((response) => {
                                                         axios.post(rootingService + "/bookings", { idTravels: [travel[0].id, travel[1].id], options: [] })
                                                             .then(function (response) {
-                                                                console.log(WHITE_COLOR, response.data)
+                                                                console.log(YELLOW_COLOR, response.data)
                                                                 console.log()
                                                                 console.log(GREEN_COLOR, "Lorsque le systeme de payement externe a reussi a encaisser le montant il fait alors une requete pour chacun de ces lien")
 
-
-                                                                axios.post(response.data).then(function (response) {
-                                                                    console.log(MAGENTA_COLOR, "Le resultat de cette requete est :")
+                                                                axios.post("http://localhost:4003/" + response.data.substring(20)).then(function (response) {
+                                                                    console.log(MAGENTA_COLOR, "Le resultat de ces requete est :")
                                                                     console.log(WHITE_COLOR, response.data)
 
-                                                                    console.log(GREEN_COLOR, "La reservation a donc reussis a être payé")
+                                                                    axios.post("http://localhost:4003/" + payment1.substring(20)).then(function (response) {
+                                                                        console.log(WHITE_COLOR, response.data)
+
+                                                                        axios.post("http://localhost:4003/" + payment2.substring(20)).then(function (response) {
+                                                                            console.log(WHITE_COLOR, response.data)
+
+                                                                            console.log(GREEN_COLOR, "La reservation a donc reussis a être payé")
+
+                                                                        })
+
+                                                                    })
 
                                                                 })
                                                             })
 
-                                                    });
+                                                    })
 
-                                            });
+                                            })
 
 
                                     })

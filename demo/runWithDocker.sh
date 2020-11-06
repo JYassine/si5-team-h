@@ -18,26 +18,28 @@ do
     fi
 done
 
-echo "Installation of pm2"
-npm install -g pm2
 services_list=$(ls ../Services/)
 mapfile -t services_array <<< "$services_list"
+
+cd ../demo
+cp ../production.env ./.env
 
 cd ../Services
 
 for i in "${services_array[@]}"
 do
-    echo "-----------------------"
     echo $i
     cd $i
     rm .env
-    cp ../../dev.env ./.env
-    npm install
-    npm test
-    pm2 start server.js -n $i
+    cp ../../production.env ./.env
     cd ../
+    
 done
 
+docker-compose build
+docker-compose up &
+
+sleep 10
 echo "All services launch successfully"
 
 cd ../demo
@@ -47,7 +49,7 @@ npm test
 if [ $kill = 1 ]
 then
     echo "Kill des serveurs"
-    pm2 kill
+    docker-compose down
 fi
 
 if [ $db = 0 ]
@@ -59,7 +61,7 @@ then
     for i in "${services_array[@]}"
     do
         cd $i
-        echo "" > db.json
+        rm -f db.json
         cd ../
     done
 fi
