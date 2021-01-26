@@ -5,7 +5,7 @@ const cors = require('cors');
 const routes = require('./routes'); //Importe le fichier routes.js
 const dotenv = require('dotenv');
 
-const PORT = 4008;
+const PORT = 4018;
 
 const dotenvConfig = dotenv.config()
 if (dotenvConfig.error) {

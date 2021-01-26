@@ -1,0 +1,18 @@
+{
+  "bookings": [
+    {
+      "id": "14",
+      "idTravels": [
+        "NP1"
+      ],
+      "options": []
+    },
+    {
+      "id": "145",
+      "idTravels": [
+        "NP1"
+      ],
+      "options": []
+    }
+  ]
+}
