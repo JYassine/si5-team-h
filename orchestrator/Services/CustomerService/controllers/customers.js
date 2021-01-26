@@ -2,7 +2,11 @@ const axios = require('axios');
 
 async function getCustomers() {
     try {
-        return (await axios.get(process.env.CUSTOMER_ADDR + `/customers`)).data
+        var customers = [];
+        customers = customers.concat((await axios.get(process.env.ROOTING1_ADDR + `/customers`)).data);
+        customers = customers.concat((await axios.get(process.env.ROOTING2_ADDR + `/customers`)).data);
+
+        return customers;
     } catch (err) {
         next(err)
     }

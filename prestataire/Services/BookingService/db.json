@@ -150,6 +150,148 @@
         "PB1"
       ],
       "options": []
+    },
+    {
+      "id": "164",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "26",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "128",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "48",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "70",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "98",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "20",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "115",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "44",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "8",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "144",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "51",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "64",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "172",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "102",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "141",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
     }
   ]
 }

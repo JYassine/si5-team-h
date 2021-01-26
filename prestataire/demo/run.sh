@@ -38,6 +38,19 @@ do
     cd ../
 done
 
+for i in "${services_array[@]}"
+do
+    echo "-----------------------"
+    echo $i
+    cd $i
+    rm .env
+    cp ../../dev2.env ./.env
+    npm install
+    npm test
+    pm2 start server.js -n "${i}2"
+    cd ../
+done
+
 echo "All services launch successfully"
 
 cd ../demo

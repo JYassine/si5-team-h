@@ -143,6 +143,142 @@
         "PB1"
       ],
       "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d42kke8o9vd",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 82
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke8pnkv",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke8pnnx",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke8pnp7",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke8xq9o",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke8xqb4",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke8xqca",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke96nft",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke96ngn",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke96nhk",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke9gimv",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke9iylo",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke9iyme",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke9iyn8",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke9p2uc",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke9p2vp",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d29d4gkke9s8t4",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
     }
   ]
 }
