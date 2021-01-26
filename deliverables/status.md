@@ -1,4 +1,18 @@
 # Status
+
+# Week 4
+
+Avancement : Orange flag
+
+- Début de l'ajout de l'orchestrateur
+
+
+Travail à finir :
+
+- Pouvoir créer deux instances du même système (gérer les adresses)
+- Ajout du bus d'évènement
+
+--------------------------------------------------------------------------------
 # Week 45
 
 Avancement: Orange Flag
