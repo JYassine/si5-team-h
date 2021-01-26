@@ -1,0 +1,36 @@
+{
+  "priceBookingOptions": [
+    {
+      "id": "NP2,PB1-30d297b9kke6k7uh",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 82
+    },
+    {
+      "id": "NP2,PB1-30d297bnkke6kim1",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 88
+    },
+    {
+      "id": "NP2,PB1-30d297bnkke6kioj",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    },
+    {
+      "id": "NP2,PB1-30d297bnkke6kipm",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "totalPrice": 78
+    }
+  ]
+}

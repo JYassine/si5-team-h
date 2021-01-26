@@ -1,0 +1,37 @@
+{
+  "bookings": [
+    {
+      "id": "196",
+      "idTravels": [
+        "NP1"
+      ],
+      "options": []
+    },
+    {
+      "id": "195",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "83",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    },
+    {
+      "id": "4",
+      "idTravels": [
+        "NP2",
+        "PB1"
+      ],
+      "options": []
+    }
+  ]
+}

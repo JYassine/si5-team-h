@@ -1,0 +1,37 @@
+{
+  "orderPayments": [
+    {
+      "id": "30d2977gkke6k016",
+      "idBooking": "1",
+      "currency": "USD",
+      "total": "52",
+      "payment_method": "Paypal",
+      "linkPayment": "http://localhost:4003/payment/execute/Paypal-30d2977gkke6k016"
+    },
+    {
+      "id": "30d2977ukke6kinr",
+      "idBooking": "195",
+      "currency": "USD",
+      "total": 88,
+      "payment_method": "Paypal",
+      "linkPayment": "http://localhost:4003/payment/execute/Paypal-30d2977ukke6kinr"
+    },
+    {
+      "id": "30d2977ukke6kiou",
+      "idBooking": "83",
+      "currency": "USD",
+      "total": 78,
+      "payment_method": "Paypal",
+      "linkPayment": "http://localhost:4003/payment/execute/Paypal-30d2977ukke6kiou"
+    },
+    {
+      "id": "30d2977ukke6kipu",
+      "idBooking": "4",
+      "currency": "USD",
+      "total": 78,
+      "payment_method": "Paypal",
+      "linkPayment": "http://localhost:4003/payment/execute/Paypal-30d2977ukke6kipu"
+    }
+  ],
+  "paymentDone": []
+}
