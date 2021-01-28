@@ -1,0 +1,48 @@
+version: "3.0"
+services:
+  # Travel API
+  travel:
+    build: ../Services/TravelService
+    container_name: PLMCF_travel
+    ports:
+      - "4021:4021"
+    
+  rooting:
+    build: ../Services/RootingService
+    container_name: PLMCF_rooting
+    ports:
+      - "4022:4022"
+    
+  payment:
+    build: ../Services/PaymentService
+    container_name: PLMCF_payment
+    ports:
+      - "4023:4023"
+      
+  booking:
+    build: ../Services/BookingService
+    container_name: PLMCF_booking
+    ports:
+      - "4024:4024"
+
+    
+  price:
+    build: ../Services/PriceService
+    ports:
+      - "4025:4025"
+
+  
+  place:
+    build: ../Services/PlaceService
+    container_name: PLMCF_place
+    ports:
+      - "4026:4026"
+      
+  customer:
+    build: ../Services/CustomerService
+    container_name: PLMCF_customer
+    ports:
+      - "4028:4028"
+
+ 
+ 
