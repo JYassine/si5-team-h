@@ -10,12 +10,12 @@ if (dotenvConfig.error) {
   throw dotenvConfig.error
 }
 
-const PORT = process.env.PRICE_PORT;
+const PORT = process.env.PROVIDER_PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/', routes);
 
-app.listen(PORT, function () {
-  console.log("Server is running on Port: " + PORT);
+app.listen(PORT, function() {
+    console.log("Server is running on Port: " + PORT);
 });

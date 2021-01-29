@@ -1,0 +1,83 @@
+{
+  "trains": [
+    {
+      "id": "NP1",
+      "from": "Nice",
+      "to": "Paris",
+      "departureTime": "9h30",
+      "arrivingTime": "15h30",
+      "price": 29,
+      "options": [],
+      "pmr": false,
+      "taken": false
+    },
+    {
+      "id": "NP2",
+      "from": "Nice",
+      "to": "Paris",
+      "departureTime": "8h30",
+      "arrivingTime": "13h00",
+      "price": 59,
+      "options": [
+        "bicycle",
+        "plug"
+      ],
+      "pmr": true,
+      "taken": false
+    },
+    {
+      "id": "PB1",
+      "from": "Paris",
+      "to": "Brest",
+      "departureTime": "14h00",
+      "arrivingTime": "17h00",
+      "price": 19,
+      "options": [
+        "bicycle",
+        "plug"
+      ],
+      "pmr": true,
+      "taken": false
+    },
+    {
+      "id": "NB1",
+      "from": "Nice",
+      "to": "Brest",
+      "departureTime": "6h00",
+      "arrivingTime": "16h00",
+      "price": 89,
+      "options": [
+        "bicycle",
+        "plug"
+      ],
+      "pmr": true,
+      "taken": false
+    },
+    {
+      "id": "NB2",
+      "from": "Nice",
+      "to": "Brest",
+      "departureTime": "6h00",
+      "arrivingTime": "16h00",
+      "price": 89,
+      "options": [
+        "bicycle"
+      ],
+      "pmr": false,
+      "taken": false
+    },
+    {
+      "id": "NB3",
+      "from": "Nice",
+      "to": "Brest",
+      "departureTime": "6h00",
+      "arrivingTime": "16h00",
+      "price": 89,
+      "options": [
+        "plug"
+      ],
+      "pmr": true,
+      "taken": false
+    }
+  ]
+}

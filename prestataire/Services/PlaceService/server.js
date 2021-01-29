@@ -10,8 +10,7 @@ if (dotenvConfig.error) {
     throw dotenvConfig.error;
 }
 
-
-const PORT = `${process.env.PLACE_PORT}`;
+const PORT = process.env.PLACE_PORT;
 
 app.use(cors());
 app.use(bodyParser.json());

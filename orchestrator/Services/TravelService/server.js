@@ -5,12 +5,12 @@ const cors = require('cors');
 const routes = require('./routes'); //Importe le fichier routes.js
 const dotenv = require('dotenv');
 
-const PORT = 4001;
-
 const dotenvConfig = dotenv.config()
 if (dotenvConfig.error) {
   throw dotenvConfig.error
 }
+
+const PORT = process.env.TRAVEL_PORT;
 
 app.use(cors());
 app.use(bodyParser.json());

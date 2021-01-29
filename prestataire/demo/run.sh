@@ -19,7 +19,7 @@ do
 done
 
 echo "Installation of pm2"
-npm install -g pm2
+# npm install -g pm2
 services_list=$(ls ../Services/)
 mapfile -t services_array <<< "$services_list"
 
@@ -32,9 +32,22 @@ do
     cd $i
     rm .env
     cp ../../dev.env ./.env
-    npm install
-    npm test
+    #npm install
+    #npm test
     pm2 start server.js -n $i
+    cd ../
+done
+
+for i in "${services_array[@]}"
+do
+    echo "-----------------------"
+    echo $i
+    cd $i
+    rm .env
+    cp ../../dev2.env ./.env
+    #npm install
+    #npm test
+    pm2 start server.js -n "${i}2"
     cd ../
 done
 
