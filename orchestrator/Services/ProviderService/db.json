@@ -9,16 +9,6 @@
       "id": "local_tlmcf",
       "name": "tlmcf",
       "routingAddress": "http://localhost:4022"
-    },
-    {
-      "id": "docker_sncf",
-      "name": "sncf",
-      "routingAddress": "http://rooting:4002"
-    },
-    {
-      "id": "docker_tlmcf",
-      "name": "tlmcf",
-      "routingAddress": "http://rooting:4022"
     }
   ]
 }
