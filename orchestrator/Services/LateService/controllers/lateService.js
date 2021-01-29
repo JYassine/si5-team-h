@@ -1,5 +1,11 @@
 const fileSync = require('lowdb/adapters/FileSync')
 
+const { Kafka } = require('kafkajs')
+const kafka = new Kafka({
+    clientId: 'TravelAPI',
+    brokers: ['kafka:9092']
+})
+
 
 const bookingAPI = require("../api/bookingAPI")
 
@@ -24,6 +30,20 @@ const sendEmails = async (agenciesToNotify) =>{
             console.log("Send email to "+agency.mail+": The Travel "+travel.idTravel+" is late ")
         }
     }
+}
+
+async function getLateMessages() {
+    const consumer = kafka.consumer({groupId: 'lateService'})
+
+    await consumer.connect()
+    await consumer.subscribe({topic: "Late", fromBeginning: true})
+    await consumer.run({
+        eachMessage: async ({topic, partition, message}) => {
+            console.log(message.value.toString())
+
+        },
+
+    })
 }
 
 

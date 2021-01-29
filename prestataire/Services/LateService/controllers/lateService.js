@@ -3,6 +3,12 @@ const fileSync = require('lowdb/adapters/FileSync')
 
 const bookingAPI = require("../api/bookingAPI")
 
+const { Kafka } = require('kafkajs')
+const kafka = new Kafka({
+    clientId: 'TravelAPI',
+    brokers: ['localhost:9092']
+})
+
 const notifyAgencies = async (body) =>{
     const idsTravels = body["idsTravels"]
     let agenciesToNotify = []
@@ -26,7 +32,22 @@ const sendEmails = async (agenciesToNotify) =>{
     }
 }
 
+async function produceLate(body) {
+    const idsTravels = body["idsTravels"]
+    const producer = kafka.producer()
+    await producer.connect()
+    await producer.send({
+        topic: 'Late',
+        messages: [
+            { value: idsTravels },
+        ],
+    })
+
+    await producer.disconnect()
+}
+
 
 module.exports = {
-    notifyAgencies
+    notifyAgencies,
+    produceLate
 }

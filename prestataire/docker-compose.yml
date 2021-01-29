@@ -3,46 +3,52 @@ services:
   # Travel API
   travel:
     build: ./Services/TravelService
-    container_name: travel
+    container_name: travel_prestataire
     ports:
-      - "4001:4001"
+      - "4021:4021"
     
   rooting:
     build: ./Services/RootingService
-    container_name: rooting
+    container_name: rooting_prestataire
     ports:
-      - "4002:4002"
+      - "4022:4022"
     
   payment:
     build: ./Services/PaymentService
-    container_name: payment
+    container_name: payment_prestataire
     ports:
-      - "4003:4003"
+      - "4023:4023"
       
   booking:
     build: ./Services/BookingService
-    container_name: booking
+    container_name: booking_prestataire
     ports:
-      - "4004:4004"
+      - "4024:4024"
 
     
   price:
     build: ./Services/PriceService
-    container_name: price
+    container_name: price_prestataire
     ports:
-      - "4005:4005"
+      - "4025:4025"
 
   
   place:
     build: ./Services/PlaceService
-    container_name: place
+    container_name: place_prestataire
     ports:
-      - "4006:4006"
+      - "4026:4026"
+
+  late:
+    build: ./Services/LateService
+    container_name: late_prestataire
+    ports:
+      - "4027:4027"
       
   customer:
     build: ./Services/CustomerService
-    container_name: customer
+    container_name: customer_prestataire
     ports:
-      - "4008:4008"
+      - "4028:4028"
  
  
