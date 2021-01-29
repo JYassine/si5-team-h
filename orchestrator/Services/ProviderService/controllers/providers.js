@@ -10,7 +10,8 @@ db.defaults({ providers: [] })
 
 if (db.has('providers').value()) { //Reset de la BD avec la liste des trains de départ
     db.get('providers').remove({}).write()
-    db.get('providers')
+    if (process.env.DEV_MODE == 1){
+        db.get('providers')
         .push(
             {
                 "id": "local_sncf",
@@ -22,6 +23,11 @@ if (db.has('providers').value()) { //Reset de la BD avec la liste des trains de 
                 "name": "tlmcf",
                 "routingAddress": "http://localhost:4022"
             },
+        )
+        .write()
+    } else {
+        db.get('providers')
+        .push(
             {
                 "id": "docker_sncf",
                 "name": "sncf",
@@ -34,6 +40,7 @@ if (db.has('providers').value()) { //Reset de la BD avec la liste des trains de 
             },
         )
         .write()
+    }
 }
 
 async function getProviders() {
