@@ -1,10 +1,12 @@
 const axios = require('axios');
+const { getProviders } = require('../api/providers');
 
 async function getCustomers() {
     try {
         var customers = [];
-        customers = customers.concat((await axios.get(process.env.ROOTING1_ADDR + `/customers`)).data);
-        customers = customers.concat((await axios.get(process.env.ROOTING2_ADDR + `/customers`)).data);
+        for (provider of (await getProviders())){
+            customers = customers.concat((await axios.get(provider.routingAddress + "/customers")).data)
+        }
 
         return customers;
     } catch (err) {

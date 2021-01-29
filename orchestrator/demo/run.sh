@@ -32,8 +32,8 @@ do
     cd $i
     rm .env
     cp ../../dev.env ./.env
-    npm install
-    npm test
+    # npm install
+    # npm test
     pm2 start server.js -n $i
     cd ../
 done
