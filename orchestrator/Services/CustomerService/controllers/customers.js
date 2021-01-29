@@ -4,8 +4,18 @@ const { getProviders } = require('../api/providers');
 async function getCustomers() {
     try {
         var customers = [];
+        var response = [];
+
         for (provider of (await getProviders())){
-            customers = customers.concat((await axios.get(provider.routingAddress + "/customers")).data)
+            response = [];
+
+            try {
+                response = await axios.get(provider.routingAddress + "/customers")
+
+                customers = customers.concat(response.data)
+            } catch (error) {
+                console.log("the server " + provider.id + " dont response")
+            }
         }
 
         return customers;
