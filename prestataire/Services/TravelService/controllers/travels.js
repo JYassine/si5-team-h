@@ -91,8 +91,73 @@ async function getTravels(request) {
     try {
         db.read();
 
-        var result = []
-        var directTrains = db.get('trains')
+        var trainsWithGoodFrom = db.get('trains')
+            .filter({taken: false})
+            .filter(function (train) {
+                if (pmr === true) {
+                    return train.pmr === true
+                } else {
+                    return true;
+                }
+            })
+            .filter(function (travel) {
+                let allOptionsGood = true
+                for (const option in options) {
+                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                }
+                return allOptionsGood
+            })
+            .filter({from: from})
+            .filter(function (train) {
+                return to == undefined || to != train.to
+            })
+            .value();
+
+        var trainsWithGoodTo = db.get('trains')
+            .filter({taken: false})
+            .filter(function (train) {
+                if (pmr === true) {
+                    return train.pmr === true
+                } else {
+                    return true;
+                }
+            })
+            .filter(function (travel) {
+                let allOptionsGood = true
+                for (const option in options) {
+                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
+                }
+                return allOptionsGood
+            })
+            .filter({to: to})
+            .filter(function (train) {
+                return from == undefined || from != train.from
+            })
+            .value();
+
+
+        if (from == undefined){
+            return trainsWithGoodTo
+        } else if (to == undefined){
+            return trainsWithGoodFrom
+        } else {
+            var result = []
+
+            for (var i = 0; i < trainsWithGoodFrom.length; i++) {
+                trainsWithGoodTo
+                    .filter(function (train) {//Filtre pour que les train ai une correspondance au même endroit
+                        return trainsWithGoodFrom[i].to == train.from;
+                    })
+                    .filter(function (train) {//Filtre pour que la correspondance soit en raccord avec le temps
+                        return trainsWithGoodFrom[i].arrivingTime < train.departureTime;
+                    })
+                    .forEach(element => {
+                        result.push([trainsWithGoodFrom[i], element])
+                    });
+            }
+
+
+            var directTrains = db.get('trains')
             .filter({taken: false})
             .filter(function (train) {
                 if (pmr === true) {
@@ -115,57 +180,8 @@ async function getTravels(request) {
                 result.push([element])
             });
 
-
-        var trainsWithGoodFrom = db.get('trains')
-            .filter({taken: false})
-            .filter(function (train) {
-                if (pmr === true) {
-                    return train.pmr === true
-                } else {
-                    return true;
-                }
-            })
-            .filter(function (travel) {
-                let allOptionsGood = true
-                for (const option in options) {
-                    allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
-                }
-                return allOptionsGood
-            })
-            .filter({from: from})
-            .filter(function (train) {
-                return to != train.to
-            })
-            .value();
-
-
-        for (var i = 0; i < trainsWithGoodFrom.length; i++) {
-            db.get('trains')
-                .filter({taken: false})
-                .filter(function (travel) {
-                    let allOptionsGood = true
-                    for (const option in options) {
-                        allOptionsGood = travel.options.includes(options[option]) && allOptionsGood
-                    }
-                    return allOptionsGood
-                })
-                .filter({to: to})
-                .filter(function (train) {//Filtre pour que les train ai une correspondance au même endroit
-                    return trainsWithGoodFrom[i].to == train.from;
-                })
-                .filter(function (train) {//Filtre pour que la correspondance soit en raccord avec le temps
-                    return trainsWithGoodFrom[i].arrivingTime < train.departureTime;
-                })
-                .value()
-                .forEach(element => {
-                    result.push([trainsWithGoodFrom[i], element])
-                });
+            return result;
         }
-
-
-        return result;
-
-
     } catch (err) {
         console.error(err)
     }
