@@ -171,11 +171,11 @@ async function getTravels(request) {
     }
 }
 
-async function travelById(idTravel) {
+async function travelById(travelId) {
     try {
         db.read()
         return db.get('trains')
-            .find(element => element.id == idTravel)
+            .find(element => element.id == travelId)
     } catch (err) {
         console.error(err)
     }
