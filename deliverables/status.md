@@ -1,5 +1,19 @@
 # Status
 
+# Week 5
+
+Avancement : Orange flag
+
+- Ajout de l'orchestrateur de travelService
+- Les deux environnements des deux compagnies sont créés
+- Ajout de l'orchestrateur de customerService
+
+Travail à finir :
+
+- Ajout de l'orchestrateur pour payment
+- Ajout de l'orchestrateur pour booking
+- Ajout du bus pour envoyer les trains en retards
+
 # Week 4
 
 Avancement : Orange flag
