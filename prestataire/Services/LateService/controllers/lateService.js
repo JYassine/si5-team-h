@@ -6,31 +6,9 @@ const bookingAPI = require("../api/bookingAPI")
 const { Kafka } = require('kafkajs')
 const kafka = new Kafka({
     clientId: 'TravelAPI',
-    brokers: ['localhost:9092']
+    brokers: ['kafka:9092']
 })
 
-const notifyAgencies = async (body) =>{
-    const idsTravels = body["idsTravels"]
-    let agenciesToNotify = []
-    for (const idTravel of idsTravels) {
-        const agencies = await bookingAPI.getAgencies(idTravel)
-        agenciesToNotify.push({
-            idTravel,
-            agencies
-        })
-    }
-    await sendEmails(agenciesToNotify)
-    return agenciesToNotify
-}
-
-
-const sendEmails = async (agenciesToNotify) =>{
-    for (const travel of agenciesToNotify){
-        for (const agency of travel.agencies){
-            console.log("Send email to "+agency.mail+": The Travel "+travel.idTravel+" is late ")
-        }
-    }
-}
 
 async function produceLate(body) {
     const idsTravels = body["idsTravels"]
@@ -39,7 +17,7 @@ async function produceLate(body) {
     await producer.send({
         topic: 'Late',
         messages: [
-            { value: idsTravels },
+            { value: JSON.stringify(idsTravels)},
         ],
     })
 
@@ -48,6 +26,5 @@ async function produceLate(body) {
 
 
 module.exports = {
-    notifyAgencies,
     produceLate
 }

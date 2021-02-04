@@ -6,24 +6,32 @@ services:
     container_name: travel_prestataire
     ports:
       - "4021:4021"
+    networks:
+      - orchestrator_api-network
 
   rooting:
     build: ./Services/RootingService
     container_name: rooting_prestataire
     ports:
       - "4022:4022"
+    networks:
+      - orchestrator_api-network
     
   payment:
     build: ./Services/PaymentService
     container_name: payment_prestataire
     ports:
       - "4023:4023"
+    networks:
+      - orchestrator_api-network
       
   booking:
     build: ./Services/BookingService
     container_name: booking_prestataire
     ports:
       - "4024:4024"
+    networks:
+      - orchestrator_api-network
 
     
   price:
@@ -31,6 +39,8 @@ services:
     container_name: price_prestataire
     ports:
       - "4025:4025"
+    networks:
+      - orchestrator_api-network
 
   
   place:
@@ -38,17 +48,26 @@ services:
     container_name: place_prestataire
     ports:
       - "4026:4026"
+    networks:
+      - orchestrator_api-network
 
   late:
     build: ./Services/LateService
     container_name: late_prestataire
     ports:
       - "4027:4027"
+    networks:
+      - orchestrator_api-network
       
   customer:
     build: ./Services/CustomerService
     container_name: customer_prestataire
     ports:
       - "4028:4028"
+    networks:
+      - orchestrator_api-network
 
  
+networks:
+  orchestrator_api-network:
+    external: true

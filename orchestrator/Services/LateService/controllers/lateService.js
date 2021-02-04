@@ -9,8 +9,7 @@ const kafka = new Kafka({
 
 const bookingAPI = require("../api/bookingAPI")
 
-const notifyAgencies = async (body) =>{
-    const idsTravels = body["idsTravels"]
+const notifyAgencies = async (idsTravels) =>{
     let agenciesToNotify = []
     for (const idTravel of idsTravels) {
         const agencies = await bookingAPI.getAgencies(idTravel)
@@ -40,7 +39,7 @@ async function getLateMessages() {
     await consumer.run({
         eachMessage: async ({topic, partition, message}) => {
             console.log(message.value.toString())
-
+            //await notifyAgencies(message.value.toString())
         },
 
     })
@@ -48,5 +47,5 @@ async function getLateMessages() {
 
 
 module.exports = {
-    notifyAgencies
+    notifyAgencies,getLateMessages
 }
