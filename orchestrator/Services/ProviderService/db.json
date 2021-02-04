@@ -1,12 +1,12 @@
 {
   "providers": [
     {
-      "id": "local_sncf",
+      "id": "LCLSNCF",
       "name": "sncf",
       "routingAddress": "http://localhost:4002"
     },
     {
-      "id": "local_tlmcf",
+      "id": "LCLTLMCF",
       "name": "tlmcf",
       "routingAddress": "http://localhost:4022"
     }
