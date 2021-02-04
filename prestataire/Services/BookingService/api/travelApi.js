@@ -20,10 +20,10 @@ const getPrice = async (body) => {
 const getLinkPayement = async (body) => {
 
   return await axios.post(`${process.env.PAYMENT_ADDR}/payment`, body)
-    .catch(error => console.log("Error to get the payement link", error))
     .then( (response) => {
       return response.data
-    });
+    }).catch(error => console.log("Error to get the payement link", error))
+    
 };
 
 module.exports = {

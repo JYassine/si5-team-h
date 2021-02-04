@@ -14,13 +14,13 @@ if (db.has('providers').value()) { //Reset de la BD avec la liste des trains de 
         db.get('providers')
         .push(
             {
-                "id": "LCLSNCF",
+                "id": "SNCF",
                 "name": "sncf",
                 "routingAddress": "http://localhost:4002"
             },
             {
-                "id": "LCLTLMCF",
-                "name": "tlmcf",
+                "id": "PLMCF",
+                "name": "plmcf",
                 "routingAddress": "http://localhost:4022"
             },
         )
@@ -29,13 +29,13 @@ if (db.has('providers').value()) { //Reset de la BD avec la liste des trains de 
         db.get('providers')
         .push(
             {
-                "id": "DCKSNCF",
+                "id": "SNCF",
                 "name": "sncf",
                 "routingAddress": "http://rooting:4002"
             },
             {
-                "id": "DCKTLMCF",
-                "name": "tlmcf",
+                "id": "PLMCF",
+                "name": "plmcf",
                 "routingAddress": "http://rooting:4022"
             },
         )
