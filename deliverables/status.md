@@ -1,5 +1,16 @@
 # Status
 
+# Week 6
+
+Avancement : Orange flag
+
+- Envoie des évènements de retards de trains disponible à travers un bus kafka
+
+Travail à finir :
+
+- Pouvoir créer des évènements lors d'une réservation afin d'avoir un suivi sur les transactions réalisés
+- Pouvoir annuler une réservation en cas d'échec d'une transaction
+
 # Week 5
 
 Avancement : Orange flag
