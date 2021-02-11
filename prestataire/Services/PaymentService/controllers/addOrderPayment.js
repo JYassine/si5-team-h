@@ -58,10 +58,10 @@ const validateOrderPayment = async (linkPaymentId) =>{
 
     };
     
-    db.get('paymentDone').push(statusOrder).write();
-    db.get('orderPayments').remove({ id: idPayment }).write();
+    await db.get('paymentDone').push(statusOrder).write();
+    await db.get('orderPayments').remove({ id: idPayment }).write();
 
-    bookingApi.payementRelease(orderPayment.idBooking);
+    await bookingApi.payementRelease(orderPayment.idBooking);
 
     return statusOrder;
 }
