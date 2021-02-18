@@ -6,57 +6,115 @@ services:
     container_name: SNCF_travel
     ports:
       - "4001:4001"
+    networks:
+      - sncf-network
     
   rooting:
     build: ../Services/RootingService
     container_name: SNCF_rooting
     ports:
       - "4002:4002"
+    networks:
+      - sncf-network
     
   payment:
     build: ../Services/PaymentService
     container_name: SNCF_payment
     ports:
       - "4003:4003"
-      
+    networks:
+      - sncf-network
+    
+    links:
+      - kafka
+
   booking:
     build: ../Services/BookingService
     container_name: SNCF_booking
     ports:
       - "4004:4004"
+    networks:
+      - sncf-network
+    
+    links:
+      - kafka
 
     
   price:
     build: ../Services/PriceService
-    
     container_name: SNCF_price
     ports:
       - "4005:4005"
-
+    networks:
+      - sncf-network
+    
+    links:
+      - kafka
   
   late:
     build: ../Services/LateService
     container_name: SNCF_late
     ports:
       - "4006:4006"
+    networks:
+      - sncf-network
 
   account:
     build: ../Services/AccountService
     container_name: SNCF_account
     ports:
       - "4007:4007"
+    networks:
+      - sncf-network
       
   place:
     build: ../Services/PlaceService
     container_name: SNCF_place
     ports:
       - "4008:4008"
+    networks:
+      - sncf-network
 
   customer:
     build: ../Services/CustomerService
     container_name: SNCF_customer
     ports:
       - "4009:4009"
+    networks:
+      - sncf-network
 
- 
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2183:2183"
+    networks:
+      - sncf-network
+
+  kafka:
+    container_name: kafka-sncf
+    image: wurstmeister/kafka:2.11-1.1.1
+    ports:
+      - "9094:9092"
+    hostname: kafka-sncf
+    links:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka-sncf
+      KAFKA_ADVERTISED_PORT: 9094
+      KAFKA_PORT: 9094
+      KAFKA_LISTENER: PLAINTEXT://kafka-sncf:9094
+      KAFKA_ADVERTISED_LISTENER: PLAINTEXT://kafka-sncf:9094
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_DELETE_TOPIC_ENABLE: 'true'
+      KAFKA_CREATE_TOPICS: "price:1:1,booking:1:1,replyChannel:1:1,payment:1:1:compact"
+      KAFKA_BROKER_ID: 3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - sncf-network
+
+networks:
+  sncf-network:
+    driver: bridge
  

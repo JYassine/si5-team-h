@@ -7,7 +7,7 @@ const getTravelPrice = async (id) => {
       return response.data.price;
     })
     .catch(error => {
-      throw new Exception("Error : "+ error);
+      throw new Error("Error : "+ error);
     });
 
     return priceTravel;

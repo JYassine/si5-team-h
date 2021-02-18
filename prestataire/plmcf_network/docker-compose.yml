@@ -6,24 +6,36 @@ services:
     container_name: PLMCF_travel
     ports:
       - "4021:4021"
+    networks:
+      - plmcf-network
     
   rooting:
     build: ../Services/RootingService
     container_name: PLMCF_rooting
     ports:
       - "4022:4022"
+    networks:
+      - plmcf-network
     
   payment:
     build: ../Services/PaymentService
     container_name: PLMCF_payment
     ports:
       - "4023:4023"
+    networks:
+      - plmcf-network
+    links:
+      - kafka
       
   booking:
     build: ../Services/BookingService
     container_name: PLMCF_booking
     ports:
       - "4024:4024"
+    networks:
+      - plmcf-network
+    links:
+      - kafka
 
     
   price:
@@ -31,31 +43,78 @@ services:
     container_name: PLMCF_price
     ports:
       - "4025:4025"
-
+    networks:
+      - plmcf-network
+    links:
+      - kafka
+    
   
   late:
     build: ../Services/LateService
     container_name: PLMCF_late
     ports:
       - "4026:4026"
+    networks:
+      - plmcf-network
 
   account:
     build: ../Services/AccountService
     container_name: PLMCF_account
     ports:
       - "4027:4027"
+    networks:
+      - plmcf-network
       
   place:
     build: ../Services/PlaceService
     container_name: PLMCF_place
     ports:
       - "4028:4028"
+    networks:
+      - plmcf-network
 
   customer:
     build: ../Services/CustomerService
     container_name: PLMCF_customer
     ports:
       - "4029:4029"
+    networks:
+      - plmcf-network
+
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2184:2184"
+    networks:
+      - plmcf-network
+
+  kafka:
+    container_name: kafka-plmcf
+    image: wurstmeister/kafka:2.11-1.1.1
+    ports:
+      - "9093:9092"
+    links:
+      - zookeeper
+    environment:
+      
+      KAFKA_ADVERTISED_HOST_NAME: kafka-plmcf
+      KAFKA_ADVERTISED_PORT: 9093
+      KAFKA_PORT: 9093
+      KAFKA_LISTENER: PLAINTEXT://kafka-plmcf:9093
+      KAFKA_ADVERTISED_LISTENER: PLAINTEXT://kafka-plmcf:9093
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_DELETE_TOPIC_ENABLE: 'true'
+      KAFKA_CREATE_TOPICS: "price:1:1,booking:1:1,replyChannel:1:1,payment:1:1:compact"
+      KAFKA_BROKER_ID: 2
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - plmcf-network
+
+networks:
+  plmcf-network:
+    driver: bridge
 
  
  
