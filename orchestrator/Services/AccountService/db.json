@@ -1,3 +1,11 @@
 {
-  "accounts": []
+  "accounts": [
+    {
+      "id":"agencyeewk8iklc0td5y",
+      "login": "sunset",
+      "password": "bla123",
+      "mail": "blabla@gmail.com",
+      "agencyName": "SunsetTravel"
+    }
+  ]
 }

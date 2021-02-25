@@ -6,25 +6,30 @@ services:
     container_name: SNCF_travel
     ports:
       - "4001:4001"
-    
+    networks:
+      - orchestrator_api-network
   rooting:
     build: ../Services/RootingService
     container_name: SNCF_rooting
     ports:
       - "4002:4002"
-    
+    networks:
+      - orchestrator_api-network
+
   payment:
     build: ../Services/PaymentService
     container_name: SNCF_payment
     ports:
       - "4003:4003"
-      
+    networks:
+      - orchestrator_api-network
   booking:
     build: ../Services/BookingService
     container_name: SNCF_booking
     ports:
       - "4004:4004"
-
+    networks:
+      - orchestrator_api-network
     
   price:
     build: ../Services/PriceService
@@ -32,6 +37,8 @@ services:
     container_name: SNCF_price
     ports:
       - "4005:4005"
+    networks:
+      - orchestrator_api-network
 
   
   late:
@@ -39,24 +46,26 @@ services:
     container_name: SNCF_late
     ports:
       - "4006:4006"
+    networks:
+      - orchestrator_api-network
 
-  account:
-    build: ../Services/AccountService
-    container_name: SNCF_account
-    ports:
-      - "4007:4007"
-      
   place:
     build: ../Services/PlaceService
     container_name: SNCF_place
     ports:
       - "4008:4008"
-
+    networks:
+      - orchestrator_api-network
   customer:
     build: ../Services/CustomerService
     container_name: SNCF_customer
     ports:
       - "4009:4009"
+    networks:
+      - orchestrator_api-network
 
+networks:
+  orchestrator_api-network:
+    external: true
  
  

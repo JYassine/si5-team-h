@@ -12,43 +12,86 @@ services:
     container_name: travel
     ports:
       - "4011:4011"
-    
+    networks:
+      - api-network
+
   rooting:
     build: ./Services/RootingService
     container_name: rooting
     ports:
       - "4012:4012"
-    
+    networks:
+      - api-network
+
   payment:
     build: ./Services/PaymentService
     container_name: payment
     ports:
       - "4013:4013"
+    networks:
+      - api-network
       
   booking:
     build: ./Services/BookingService
     container_name: booking
     ports:
       - "4014:4014"
+    networks:
+      - api-network
 
-    
-  price:
-    build: ./Services/PriceService
-    container_name: price
+  late:
+    build: ./Services/LateService
+    container_name: late_orchestrator
     ports:
-      - "4015:4015"
+      - "4017:4017"
+    networks:
+      - api-network
 
-  
-  place:
-    build: ./Services/PlaceService
-    container_name: place
-    ports:
-      - "4016:4016"
-      
+
+
+
   customer:
     build: ./Services/CustomerService
     container_name: customer
     ports:
       - "4018:4018"
- 
- 
+    networks:
+      - api-network
+
+  account:
+    build: ./Services/AccountService
+    container_name: account
+    ports:
+      - "4019:4019"
+    networks:
+      - api-network
+
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2181:2181"
+    networks:
+      - api-network
+
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka:2.11-1.1.1
+    ports:
+      - "9092:9092"
+    links:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_DELETE_TOPIC_ENABLE: 'true'
+      KAFKA_CREATE_TOPICS: "Late:1:1"
+      KAFKA_BROKER_ID: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    driver: bridge

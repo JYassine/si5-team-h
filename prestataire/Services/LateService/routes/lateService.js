@@ -11,7 +11,7 @@ lateServiceRouter.post('/lateTravels'
          return res.status(400).json({ errors: errors.array() });
       }
 
-      lateServiceController.notifyAgencies(req.body).then(response=>{
+      lateServiceController.produceLate(req.body).then(response=>{
          res.status(200).json(response);
       });
 
