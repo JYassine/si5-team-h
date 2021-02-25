@@ -13,17 +13,16 @@ bookingRooter.post('/', [body('idTravels').isArray(), body('options').isArray()]
         }
 
         try {
-            bookingController.addBooking(req.body).then(response =>
-                {
-                    res.status(201).send(response)
-                })
+            bookingController.addBooking(req.body).then(response => {
 
-            for (var i = 0; i < req.body.idTravels.length; i++){
-                travelAPI.updateTravel(req.body.idTravels[i])
-            }
+                for (var i = 0; i < req.body.idTravels.length; i++) {
+                    travelAPI.updateTravel(req.body.idTravels[i])
+                }
 
+                return res.status(201).json(response)
+            })
         } catch (err) {
-            next(err);
+            next(err)
         }
 
     });

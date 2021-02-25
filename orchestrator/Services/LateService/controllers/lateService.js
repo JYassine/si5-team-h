@@ -38,8 +38,8 @@ async function getLateMessages() {
     await consumer.subscribe({topic: "Late", fromBeginning: true})
     await consumer.run({
         eachMessage: async ({topic, partition, message}) => {
-            console.log(message.value.toString())
-            //await notifyAgencies(message.value.toString())
+            console.log("Message reçu par Kafka: "+message.value.toString())
+            await notifyAgencies(message.value.toString())
         },
 
     })

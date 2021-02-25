@@ -1,10 +1,22 @@
 const axios = require('axios');
+const { getProviders } = require('../api/providers');
 
 async function getCustomers() {
     try {
         var customers = [];
-        customers = customers.concat((await axios.get(process.env.ROOTING1_ADDR + `/customers`)).data);
-        customers = customers.concat((await axios.get(process.env.ROOTING2_ADDR + `/customers`)).data);
+        var response = [];
+
+        for (provider of (await getProviders())){
+            response = [];
+
+            try {
+                response = await axios.get(provider.routingAddress + "/customers")
+
+                customers = customers.concat(response.data)
+            } catch (error) {
+                console.log("the server " + provider.id + " dont response")
+            }
+        }
 
         return customers;
     } catch (err) {
@@ -15,23 +27,49 @@ async function getCustomers() {
 
 
 async function customerById(idCustomer) {
-    /*try {
-        db.read()
-        return db.get('customers')
-            .find(element => element.id == idCustomer).value()
+    try {
+        var customers = [];
+        var response = [];
+
+        for (provider of (await getProviders())){
+            response = [];
+
+            try {
+                response = await axios.get(provider.routingAddress + "/customers/"+idCustomer)
+
+                customers = customers.concat(response.data)
+            } catch (error) {
+                console.log("the server " + provider.id + " dont response")
+            }
+        }
+
+        return customers;
     } catch (err) {
         next(err)
-    }*/
+    }
 }
 
 async function customerByLastNameAndFirstName(firstName, lastName){
-    /*try {
-        db.read()
-        return db.get('customers')
-            .find(element => element.firstName === firstName && element.lastName === lastName).value()
+    try {
+        var customers = [];
+        var response = [];
+
+        for (provider of (await getProviders())){
+            response = [];
+
+            try {
+                response = await axios.get(provider.routingAddress + "/customers?firstName="+firstName+"&lastName="+lastName)
+
+                customers = customers.concat(response.data)
+            } catch (error) {
+                console.log("the server " + provider.id + " dont response :"+ error)
+            }
+        }
+
+        return customers;
     } catch (err) {
         next(err)
-    }*/
+    }
 }
 
 

@@ -7,9 +7,10 @@ const updateTravel = async (id) => {
 };
 
 
-const getPrice = async (body) => {
+
+const getPrice = async (provider,body) => {
   
-  return await axios.post(`${process.env.PRICE_ADDR}/price`, body)
+  return await axios.post(`${provider.rootingAddress}/price`, body)
     .catch(error => console.log("Error on pricing travel", error))
     .then( (response) => {
       return response.data
@@ -17,9 +18,9 @@ const getPrice = async (body) => {
 };
 
 
-const getLinkPayement = async (body) => {
+const getLinkPayement = async (provider,body) => {
 
-  return await axios.post(`${process.env.PAYMENT_ADDR}/payment`, body)
+  return await axios.post(`${provider.rootingAddress}/payment`, body)
     .catch(error => console.log("Error to get the payement link", error))
     .then( (response) => {
       return response.data

@@ -8,7 +8,7 @@ const getAllBookings = async () => {
 };
 
 
-const payementRelease = (idBooking) => {
+const payementRelease = async (idBooking) => {
   axios.get(`${process.env.BOOKING_ADDR}/bookings/paymentRelease/` + idBooking)
     .catch(error => { throw new Error("Error on getting bookings : "+ error) });
 };

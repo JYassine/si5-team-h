@@ -1,13 +1,13 @@
 const express = require('express');
 
 const bookingRooter = express.Router();
-const bookingController = require('../controllers/bookings');
+const bookingController = require('../controllers/getBookings');
 
 bookingRooter.route('/').get((req, res) => {
     try {
         res.status(200).json(bookingController.bookings(req.body));
     } catch (err) {
-        next(err);
+        console.log(err);
     }
 });
 
@@ -18,7 +18,7 @@ bookingRooter.route('/getAllAgencies/:idTravel').get((req, res) => {
         })
 
     } catch (err) {
-        next(err);
+        console.log(err);
     }
 })
 

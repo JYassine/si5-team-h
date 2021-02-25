@@ -3,6 +3,7 @@
 kill=0
 db=0
 
+
 for param in "$@"
 do
     #Si on souhaite kill les serveur a la fin
@@ -18,41 +19,17 @@ do
     fi
 done
 
-services_list=$(ls ../Services/)
-mapfile -t services_array <<< "$services_list"
 
-cd ../demo
-cp ../production.env ./.env
-
-cd ../Services
-
-for i in "${services_array[@]}"
-do
-    echo $i
-    cd $i
-    rm .env
-    cp ../../production.env ./.env
-    cd ../
-    
-done
-
-docker-compose build
-docker-compose up &
-
-sleep 10
-echo "All services launch successfully"
-
-cd ../demo
 npm install
 npm test
 
 if [ $kill = 1 ]
 then
     echo "Kill des serveurs"
-    docker-compose down
+    pm2 kill
 fi
 
-if [ $db = 0 ]
+if [ $db = 1 ]
 then
     echo "Vidage des bases de donnees"
     
@@ -61,7 +38,7 @@ then
     for i in "${services_array[@]}"
     do
         cd $i
-        rm -f db.json
+        echo "" > db.json
         cd ../
     done
 fi

@@ -1,35 +1,41 @@
-version: "3"
+version: "3.0"
 services:
+  provider:
+    build: ./Services/ProviderService
+    container_name: provider
+    ports:
+      - "4010:4010"
+
   # Travel API
   travel:
     build: ./Services/TravelService
-    container_name: travel_orchestrator
+    container_name: travel
     ports:
-      - "4001:4001"
+      - "4011:4011"
     networks:
       - api-network
-    
+
   rooting:
     build: ./Services/RootingService
-    container_name: rooting_orchestrator
+    container_name: rooting
     ports:
-      - "4002:4002"
+      - "4012:4012"
     networks:
       - api-network
-    
+
   payment:
     build: ./Services/PaymentService
-    container_name: payment_orchestrator
+    container_name: payment
     ports:
-      - "4003:4003"
+      - "4013:4013"
     networks:
       - api-network
       
   booking:
     build: ./Services/BookingService
-    container_name: booking_orchestrator
+    container_name: booking
     ports:
-      - "4004:4004"
+      - "4014:4014"
     networks:
       - api-network
 
@@ -43,12 +49,20 @@ services:
 
 
 
-      
+
   customer:
     build: ./Services/CustomerService
-    container_name: customer_orchestrator
+    container_name: customer
     ports:
-      - "4008:4008"
+      - "4018:4018"
+    networks:
+      - api-network
+
+  account:
+    build: ./Services/AccountService
+    container_name: account
+    ports:
+      - "4019:4019"
     networks:
       - api-network
 

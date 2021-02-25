@@ -1,0 +1,74 @@
+version: "3.0"
+services:
+  # Travel API
+  travel:
+    build: ../Services/TravelService
+    container_name: PLMCF_travel
+    ports:
+      - "4021:4021"
+    networks:
+      - orchestrator_api-network
+    
+  rooting:
+    build: ../Services/RootingService
+    container_name: PLMCF_rooting
+    ports:
+      - "4022:4022"
+    networks:
+      - orchestrator_api-network
+    
+  payment:
+    build: ../Services/PaymentService
+    container_name: PLMCF_payment
+    ports:
+      - "4023:4023"
+    networks:
+      - orchestrator_api-network
+      
+  booking:
+    build: ../Services/BookingService
+    container_name: PLMCF_booking
+    ports:
+      - "4024:4024"
+    networks:
+      - orchestrator_api-network
+
+    
+  price:
+    build: ../Services/PriceService
+    container_name: PLMCF_price
+    ports:
+      - "4025:4025"
+    networks:
+      - orchestrator_api-network
+
+  
+  late:
+    build: ../Services/LateService
+    container_name: PLMCF_late
+    ports:
+      - "4026:4026"
+    networks:
+      - orchestrator_api-network
+
+      
+  place:
+    build: ../Services/PlaceService
+    container_name: PLMCF_place
+    ports:
+      - "4028:4028"
+    networks:
+      - orchestrator_api-network
+
+  customer:
+    build: ../Services/CustomerService
+    container_name: PLMCF_customer
+    ports:
+      - "4029:4029"
+    networks:
+      - orchestrator_api-network
+
+networks:
+  orchestrator_api-network:
+    external: true
+ 
