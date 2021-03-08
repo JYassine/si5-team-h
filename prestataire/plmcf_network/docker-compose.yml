@@ -7,7 +7,7 @@ services:
     ports:
       - "4021:4021"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
     
   rooting:
     build: ../Services/RootingService
@@ -15,7 +15,7 @@ services:
     ports:
       - "4022:4022"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
     
   payment:
     build: ../Services/PaymentService
@@ -23,7 +23,7 @@ services:
     ports:
       - "4023:4023"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
       
   booking:
     build: ../Services/BookingService
@@ -31,7 +31,7 @@ services:
     ports:
       - "4024:4024"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
 
     
   price:
@@ -40,7 +40,7 @@ services:
     ports:
       - "4025:4025"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
 
   
   late:
@@ -49,7 +49,7 @@ services:
     ports:
       - "4026:4026"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
 
       
   place:
@@ -58,7 +58,7 @@ services:
     ports:
       - "4028:4028"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
 
   customer:
     build: ../Services/CustomerService
@@ -66,9 +66,9 @@ services:
     ports:
       - "4029:4029"
     networks:
-      - orchestrator_api-network
+      - plmcf-network
 
 networks:
-  orchestrator_api-network:
-    external: true
+  plmcf-network:
+    driver: bridge
  

@@ -1,11 +1,9 @@
-const providersApi = require('../api/providers');
-const axios = require('axios').default;
-const travelAPI = require('../api/travelApi');
-
+const providersApi = require("../api/providers");
+const axios = require("axios").default;
+const travelAPI = require("../api/travelApi");
 
 const addBooking = async (body) => {
-
-    let providers = await providersApi.getProviders();
+  /*let providers = await providersApi.getProviders();
     var allTravelsProviders = []
     var allLinkPayment = []
     for (provider of providers) {
@@ -24,14 +22,11 @@ const addBooking = async (body) => {
             let linkPayment = (await (axios.post(`${allTravelsProviders[i].provider.routingAddress}/bookings`, reqBody))).data
             allLinkPayment.push(linkPayment)
         }
-    }
+    }*/
 
-    return allLinkPayment
-
+  return allLinkPayment;
 };
 
-
-
 module.exports = {
-    addBooking
+  addBooking,
 };
