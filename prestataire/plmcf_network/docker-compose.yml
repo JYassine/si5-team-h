@@ -1,0 +1,74 @@
+version: "3.0"
+services:
+  # Travel API
+  travel:
+    build: ../Services/TravelService
+    container_name: PLMCF_travel
+    ports:
+      - "4021:4021"
+    networks:
+      - plmcf-network
+    
+  rooting:
+    build: ../Services/RootingService
+    container_name: PLMCF_rooting
+    ports:
+      - "4022:4022"
+    networks:
+      - plmcf-network
+    
+  payment:
+    build: ../Services/PaymentService
+    container_name: PLMCF_payment
+    ports:
+      - "4023:4023"
+    networks:
+      - plmcf-network
+      
+  booking:
+    build: ../Services/BookingService
+    container_name: PLMCF_booking
+    ports:
+      - "4024:4024"
+    networks:
+      - plmcf-network
+
+    
+  price:
+    build: ../Services/PriceService
+    container_name: PLMCF_price
+    ports:
+      - "4025:4025"
+    networks:
+      - plmcf-network
+
+  
+  late:
+    build: ../Services/LateService
+    container_name: PLMCF_late
+    ports:
+      - "4026:4026"
+    networks:
+      - plmcf-network
+
+      
+  place:
+    build: ../Services/PlaceService
+    container_name: PLMCF_place
+    ports:
+      - "4028:4028"
+    networks:
+      - plmcf-network
+
+  customer:
+    build: ../Services/CustomerService
+    container_name: PLMCF_customer
+    ports:
+      - "4029:4029"
+    networks:
+      - plmcf-network
+
+networks:
+  plmcf-network:
+    driver: bridge
+ 

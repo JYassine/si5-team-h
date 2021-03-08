@@ -1,0 +1,14 @@
+{
+  "providers": [
+    {
+      "id": "SNCF",
+      "name": "sncf",
+      "routingAddress": "http://localhost:4002"
+    },
+    {
+      "id": "PLMCF",
+      "name": "plmcf",
+      "routingAddress": "http://localhost:4022"
+    }
+  ]
+}
